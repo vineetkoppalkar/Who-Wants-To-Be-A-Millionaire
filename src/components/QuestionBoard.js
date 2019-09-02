@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./QuestionBoard.scss";
 
+import Container from "@material-ui/core/Container";
 import Paper from "@material-ui/core/Paper";
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
@@ -28,7 +29,7 @@ class QuestionBoard extends Component {
         {question ? (
           <Paper className="question-board">
             <h3>{unescape(question.question)}</h3>
-            <Grid container spacing={3}>
+            <Grid container>
               <Grid item xs={6}>
                 <Button
                   variant="contained"

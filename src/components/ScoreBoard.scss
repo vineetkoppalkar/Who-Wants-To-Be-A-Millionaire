@@ -1,0 +1,10 @@
+.drawer {
+  @media screen and (min-width: "960px") {
+    width: 300px;
+    flex-shrink: 0;
+  }
+}
+
+.drawer-content {
+  width: 300px;
+}

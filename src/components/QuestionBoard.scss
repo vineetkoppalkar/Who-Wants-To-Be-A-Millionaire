@@ -1,4 +1,10 @@
 .question-board {
-  margin: 30px auto;
-  padding: 20px 30px;
+  // flex-grow: 1;
+  margin: 100px 0;
+  padding: 20px 32px;
+  // max-width: 960px;
+
+  // @media screen and (min-width: '576px') {
+  //   width: 70%;
+  // }
 }

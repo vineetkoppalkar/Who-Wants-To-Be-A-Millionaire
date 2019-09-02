@@ -1,8 +1,12 @@
 import React, { Component } from "react";
 import axios from "axios";
-import Container from "@material-ui/core/Container";
 
+import CssBaseline from "@material-ui/core/CssBaseline";
+import CustomAppBar from "./components/CustomAppBar";
 import QuestionBoard from "./components/QuestionBoard";
+import ScoreBoard from "./components/ScoreBoard";
+
+import "./App.scss";
 
 class App extends Component {
   constructor(props) {
@@ -10,18 +14,16 @@ class App extends Component {
     this.state = {
       questionsData: [],
       curQuestion: null,
-      curQuestionIndex: 0
+      curQuestionIndex: 0,
+      mobileOpen: false
     };
   }
 
   componentWillMount() {
-    console.log("componentWillMount()");
     this.generateQuestions();
   }
 
   generateQuestions = async () => {
-    console.log("generateQuestions()");
-
     const promises = [
       axios.get(
         "https://opentdb.com/api.php?amount=5&category=15&difficulty=easy&type=multiple"
@@ -36,26 +38,20 @@ class App extends Component {
 
     await Promise.all(promises)
       .then(allResponses => {
-        console.log("Promises resolved");
-
         let questionsData = [];
         allResponses.forEach(res => {
           questionsData = questionsData.concat(res.data.results);
         });
-        console.log(questionsData);
         this.setState({
           questionsData,
           curQuestion: questionsData[0]
         });
-        console.log("State set");
       })
       .catch(e => console.log(e));
   };
 
   getCurrentQuestion = () => {
     const { questionsData, curQuestionIndex } = this.state;
-    console.log("Curent question:");
-    console.log(questionsData[curQuestionIndex]);
     return questionsData[curQuestionIndex];
   };
 
@@ -81,16 +77,31 @@ class App extends Component {
     }
   };
 
+  handleDrawerToggle = () => {
+    const { mobileOpen } = this.state;
+    this.setState({ mobileOpen: !mobileOpen });
+  };
+
   render() {
-    const { curQuestion } = this.state;
+    const { curQuestion, mobileOpen } = this.state;
     return (
-      <div>
-        <Container maxWidth="md">
+      <div className="root">
+        <CssBaseline />
+        <CustomAppBar 
+          title="Who Wants to Be a Millionaire"
+          handleDrawerToggle={this.handleDrawerToggle}
+        />
+        <main className="content">
           <QuestionBoard
             question={curQuestion}
             onOptionSelect={this.verifyAnswer}
           />
-        </Container>
+        </main>
+        <ScoreBoard 
+          container={this.props.container}
+          mobileOpen={mobileOpen}
+          handleDrawerToggle={this.handleDrawerToggle}
+        />
       </div>
     );
   }
