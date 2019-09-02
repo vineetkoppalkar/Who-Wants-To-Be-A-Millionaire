@@ -29,7 +29,7 @@ class QuestionBoard extends Component {
         {question ? (
           <Paper className="question-board">
             <h3>{unescape(question.question)}</h3>
-            <Grid container>
+            <Grid container spacing={3}>
               <Grid item xs={6}>
                 <Button
                   variant="contained"
