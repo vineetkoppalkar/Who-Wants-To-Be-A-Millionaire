@@ -13,7 +13,7 @@ class CustomAppBar extends Component {
     return (
       <AppBar position="fixed" id="appBar">
         <Toolbar>
-          <h2>{ title }</h2>
+          <h5 style={{margin: 0}}>{ title }</h5>
           <IconButton
             color="inherit"
             aria-label="open drawer"

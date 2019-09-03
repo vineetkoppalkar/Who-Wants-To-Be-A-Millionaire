@@ -6,6 +6,8 @@ import Paper from "@material-ui/core/Paper";
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 
+import Timer from './Timer';
+
 class QuestionBoard extends Component {
   shuffle = a => {
     for (let i = a.length - 1; i > 0; i--) {
@@ -28,7 +30,8 @@ class QuestionBoard extends Component {
       <div>
         {question ? (
           <Paper className="question-board">
-            <h3>{decodeURIComponent(question.question)}</h3>
+            <Timer />
+            <h4 style={{margin: "20px 0 25px"}}>{decodeURIComponent(question.question)}</h4>
             <Grid container spacing={3}>
               <Grid item xs={6}>
                 <Button

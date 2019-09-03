@@ -1,12 +1,19 @@
 import React, { Component } from "react";
 import axios from "axios";
 
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import CssBaseline from "@material-ui/core/CssBaseline";
 import CustomAppBar from "./components/CustomAppBar";
 import QuestionBoard from "./components/QuestionBoard";
 import ScoreBoard from "./components/ScoreBoard";
 
 import "./App.scss";
+
+const theme = createMuiTheme({
+  palette: {
+    type: 'dark',
+  },
+});
 
 class App extends Component {
   constructor(props) {
@@ -85,24 +92,26 @@ class App extends Component {
   render() {
     const { curQuestion, mobileOpen } = this.state;
     return (
-      <div className="root">
-        <CssBaseline />
-        <CustomAppBar 
-          title="Who Wants to Be a Millionaire"
-          handleDrawerToggle={this.handleDrawerToggle}
-        />
-        <main className="content">
-          <QuestionBoard
-            question={curQuestion}
-            onOptionSelect={this.verifyAnswer}
+      <MuiThemeProvider theme={theme}>
+        <div className="root">
+          <CssBaseline />
+          <CustomAppBar 
+            title="Who Wants to Be a Millionaire"
+            handleDrawerToggle={this.handleDrawerToggle}
           />
-        </main>
-        <ScoreBoard 
-          container={this.props.container}
-          mobileOpen={mobileOpen}
-          handleDrawerToggle={this.handleDrawerToggle}
-        />
-      </div>
+          <main className="content">
+            <QuestionBoard
+              question={curQuestion}
+              onOptionSelect={this.verifyAnswer}
+            />
+          </main>
+          <ScoreBoard 
+            container={this.props.container}
+            mobileOpen={mobileOpen}
+            handleDrawerToggle={this.handleDrawerToggle}
+          />
+        </div>
+      </MuiThemeProvider>
     );
   }
 }

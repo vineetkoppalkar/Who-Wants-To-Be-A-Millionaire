@@ -1,0 +1,22 @@
+.timer-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin: 0 auto;
+  margin-top: -70px;
+  background: #303030;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+}
+
+#timer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+}
