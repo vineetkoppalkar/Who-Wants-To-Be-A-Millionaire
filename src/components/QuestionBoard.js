@@ -28,7 +28,7 @@ class QuestionBoard extends Component {
       <div>
         {question ? (
           <Paper className="question-board">
-            <h3>{unescape(question.question)}</h3>
+            <h3>{decodeURIComponent(question.question)}</h3>
             <Grid container spacing={3}>
               <Grid item xs={6}>
                 <Button
@@ -36,7 +36,7 @@ class QuestionBoard extends Component {
                   style={{width: "100%"}}
                   onClick={() => onOptionSelect(shuffledOptions[0])}
                 >
-                  {shuffledOptions[0] === question.correct_answer ? shuffledOptions[0] + " [*]" : shuffledOptions[0]}
+                  {shuffledOptions[0] === question.correct_answer ? decodeURIComponent(shuffledOptions[0]) + " [*]" : decodeURIComponent(shuffledOptions[0])}
                 </Button>
               </Grid>
               <Grid item xs={6}>
@@ -45,7 +45,7 @@ class QuestionBoard extends Component {
                   style={{width: "100%"}}
                   onClick={() => onOptionSelect(shuffledOptions[1])}
                 >
-                  {shuffledOptions[1] === question.correct_answer ? shuffledOptions[1] + " [*]" : shuffledOptions[1]}
+                  {shuffledOptions[1] === question.correct_answer ? decodeURIComponent(shuffledOptions[1]) + " [*]" : decodeURIComponent(shuffledOptions[1])}
                 </Button>
               </Grid>
             </Grid>
@@ -56,7 +56,7 @@ class QuestionBoard extends Component {
                   style={{width: "100%"}}
                   onClick={() => onOptionSelect(shuffledOptions[2])}
                 >
-                  {shuffledOptions[2] === question.correct_answer ? shuffledOptions[2] + " [*]" : shuffledOptions[2]}
+                  {shuffledOptions[2] === question.correct_answer ? decodeURIComponent(shuffledOptions[2]) + " [*]" : decodeURIComponent(shuffledOptions[2])}
                 </Button>
               </Grid>
               <Grid item xs={6}>
@@ -65,7 +65,7 @@ class QuestionBoard extends Component {
                   style={{width: "100%"}}
                   onClick={() => onOptionSelect(shuffledOptions[3])}
                 >
-                  {shuffledOptions[3] === question.correct_answer ? shuffledOptions[3] + " [*]" : shuffledOptions[3]}
+                  {shuffledOptions[3] === question.correct_answer ? decodeURIComponent(shuffledOptions[3]) + " [*]" : decodeURIComponent(shuffledOptions[3])}
                 </Button>
               </Grid>
             </Grid>

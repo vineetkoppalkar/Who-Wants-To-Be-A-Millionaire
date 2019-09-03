@@ -26,13 +26,13 @@ class App extends Component {
   generateQuestions = async () => {
     const promises = [
       axios.get(
-        "https://opentdb.com/api.php?amount=5&category=15&difficulty=easy&type=multiple"
+        "https://opentdb.com/api.php?amount=5&category=15&difficulty=easy&type=multiple&encode=url3986"
       ),
       axios.get(
-        "https://opentdb.com/api.php?amount=5&category=15&difficulty=medium&type=multiple"
+        "https://opentdb.com/api.php?amount=5&category=15&difficulty=medium&type=multiple&encode=url3986"
       ),
       axios.get(
-        "https://opentdb.com/api.php?amount=5&category=15&difficulty=hard&type=multiple"
+        "https://opentdb.com/api.php?amount=5&category=15&difficulty=hard&type=multiple&encode=url3986"
       )
     ];
 
