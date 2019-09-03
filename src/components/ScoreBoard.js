@@ -8,6 +8,8 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import Button from '@material-ui/core/Button';
 
+import LifeLines from './LifeLines';
+
 import "./ScoreBoard.scss";
 
 const scoreAmounts = [
@@ -103,6 +105,7 @@ class ScoreBoard extends Component {
           >
             <div className="drawer-content">
               <div className="toolbar" />
+              <LifeLines />
               <Divider />
               <List>
                 {reversedScoreAmounts.map((scoreAmount, index) => {
