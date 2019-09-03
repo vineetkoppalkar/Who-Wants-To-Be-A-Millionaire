@@ -1,0 +1,9 @@
+.score-badge {
+  padding: 5px;
+  text-align: center;
+  width: 94%;
+
+  @media screen and (min-width: "600px") {
+    width: 50%;
+  }
+}
