@@ -6,15 +6,43 @@ import Hidden from "@material-ui/core/Hidden";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
+import Button from '@material-ui/core/Button';
 
 import "./ScoreBoard.scss";
 
+const scoreAmounts = [
+  100,
+  200,
+  300,
+  500,
+  1000,  // 4
+  2000,
+  4000,
+  8000,
+  16000,
+  32000,
+  64000, // 10
+  125000,
+  250000,
+  500000,
+  1000000 // 14
+]
+
+const reversedScoreAmounts = scoreAmounts.reverse();
+
 class ScoreBoard extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      curScoreIndex: 7
+    }
+  }
+
   render() {
     const { container, mobileOpen, handleDrawerToggle } = this.props;
+    const { curScoreIndex } = this.state;
     return (
       <nav className="drawer" aria-label="mailbox folders">
-        {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Hidden mdUp implementation="css">
           <Drawer
             container={container}
@@ -30,13 +58,39 @@ class ScoreBoard extends Component {
               <div className="toolbar" />
               <Divider />
               <List>
-                {["Inbox", "Starred", "Send email", "Drafts"].map(
-                  (text, index) => (
-                    <ListItem button key={text}>
-                      <ListItemText primary={text} />
+                {reversedScoreAmounts.map((scoreAmount, index) => {
+                  const questionNumber = reversedScoreAmounts.length - index;
+                  if (questionNumber - 1 === curScoreIndex) {
+                    return <ListItem key={scoreAmount}>
+                      <Button 
+                        variant="outlined" 
+                        style={{width: "100%"}}
+                        color="inherit"
+                      >
+                        {`${questionNumber}. ${scoreAmount}`}
+                      </Button>
                     </ListItem>
-                  )
-                )}
+                  } else if (questionNumber - 1 < curScoreIndex) {
+                    return <ListItem key={scoreAmount}>
+                      <Button 
+                        variant="outlined" 
+                        style={{width: "100%"}}
+                      >
+                        {`${questionNumber}. ${scoreAmount}`}
+                      </Button>
+                    </ListItem>
+                  } else {
+                    return <ListItem key={scoreAmount}>
+                      <Button 
+                        variant="outlined" 
+                        style={{width: "100%"}}
+                        disabled
+                      >
+                        {`${questionNumber}. ${scoreAmount}`}
+                      </Button>
+                    </ListItem>
+                  }
+                })}
               </List>
             </div>
           </Drawer>
@@ -51,13 +105,39 @@ class ScoreBoard extends Component {
               <div className="toolbar" />
               <Divider />
               <List>
-                {["Inbox", "Starred", "Send email", "Drafts"].map(
-                  (text, index) => (
-                    <ListItem button key={text}>
-                      <ListItemText primary={text} />
+                {reversedScoreAmounts.map((scoreAmount, index) => {
+                  const questionNumber = reversedScoreAmounts.length - index;
+                  if (questionNumber - 1 === curScoreIndex) {
+                    return <ListItem key={scoreAmount}>
+                      <Button 
+                        variant="outlined" 
+                        style={{width: "100%"}}
+                        color="inherit"
+                      >
+                        {`${questionNumber}. ${scoreAmount}`}
+                      </Button>
                     </ListItem>
-                  )
-                )}
+                  } else if (questionNumber - 1 < curScoreIndex) {
+                    return <ListItem key={scoreAmount}>
+                      <Button 
+                        variant="outlined" 
+                        style={{width: "100%"}}
+                      >
+                        {`${questionNumber}. ${scoreAmount}`}
+                      </Button>
+                    </ListItem>
+                  } else {
+                    return <ListItem key={scoreAmount}>
+                      <Button 
+                        variant="outlined" 
+                        style={{width: "100%"}}
+                        disabled
+                      >
+                        {`${questionNumber}. ${scoreAmount}`}
+                      </Button>
+                    </ListItem>
+                  }
+                })}
               </List>
             </div>
           </Drawer>
