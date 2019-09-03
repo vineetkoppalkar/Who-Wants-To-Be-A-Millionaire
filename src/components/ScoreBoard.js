@@ -64,29 +64,29 @@ class ScoreBoard extends Component {
                     return <ListItem key={scoreAmount}>
                       <Button 
                         variant="outlined" 
-                        style={{width: "100%"}}
+                        className="score-amount"
                         color="inherit"
                       >
-                        {`${questionNumber}. ${scoreAmount}`}
+                        {`${questionNumber}) $${scoreAmount}`}
                       </Button>
                     </ListItem>
                   } else if (questionNumber - 1 < curScoreIndex) {
                     return <ListItem key={scoreAmount}>
                       <Button 
                         variant="outlined" 
-                        style={{width: "100%"}}
+                        className="score-amount"
                       >
-                        {`${questionNumber}. ${scoreAmount}`}
+                        {`${questionNumber}) $${scoreAmount}`}
                       </Button>
                     </ListItem>
                   } else {
                     return <ListItem key={scoreAmount}>
                       <Button 
                         variant="outlined" 
-                        style={{width: "100%"}}
+                        className="score-amount"
                         disabled
                       >
-                        {`${questionNumber}. ${scoreAmount}`}
+                        {`${questionNumber}) $${scoreAmount}`}
                       </Button>
                     </ListItem>
                   }
@@ -111,29 +111,29 @@ class ScoreBoard extends Component {
                     return <ListItem key={scoreAmount}>
                       <Button 
                         variant="outlined" 
-                        style={{width: "100%"}}
+                        className="score-amount"
                         color="inherit"
                       >
-                        {`${questionNumber}. ${scoreAmount}`}
+                        {`${questionNumber}) $${scoreAmount}`}
                       </Button>
                     </ListItem>
                   } else if (questionNumber - 1 < curScoreIndex) {
                     return <ListItem key={scoreAmount}>
                       <Button 
                         variant="outlined" 
-                        style={{width: "100%"}}
+                        className="score-amount"
                       >
-                        {`${questionNumber}. ${scoreAmount}`}
+                        {`${questionNumber}) $${scoreAmount}`}
                       </Button>
                     </ListItem>
                   } else {
                     return <ListItem key={scoreAmount}>
                       <Button 
                         variant="outlined" 
-                        style={{width: "100%"}}
+                        className="score-amount"
                         disabled
                       >
-                        {`${questionNumber}. ${scoreAmount}`}
+                        {`${questionNumber}) $${scoreAmount}`}
                       </Button>
                     </ListItem>
                   }
