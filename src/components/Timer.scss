@@ -26,8 +26,9 @@
   }
 }
 
-#circularProgress {
-  color: white;
+.circularProgress {
+  margin: 0 auto;
+  color: white !important;
   width: 60px !important;
   height: 60px !important;
 }

@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import "./QuestionBoard.scss";
 
-// import Container from "@material-ui/core/Container";
 import Paper from "@material-ui/core/Paper";
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import Timer from './Timer';
 import ScoreTracker from './ScoreTracker';
@@ -19,7 +19,7 @@ class QuestionBoard extends Component {
   };
 
   render() {
-    const { question, onOptionSelect } = this.props;
+    const { question, onOptionSelect, currentScore, nextScore } = this.props;
     let shuffledOptions = [];
     if (question) {
       shuffledOptions = this.shuffle(
@@ -29,9 +29,12 @@ class QuestionBoard extends Component {
 
     return (
       <div>
+        <ScoreTracker 
+          currentScore={currentScore}
+          nextScore={nextScore}
+        />
         {question ? (
           <div>
-            <ScoreTracker />
             <Paper className="question-board">
               <Timer />
               <h2 style={{margin: "15px 0 25px"}}>{decodeURIComponent(question.question)}</h2>
@@ -77,7 +80,7 @@ class QuestionBoard extends Component {
               </Grid>
             </Paper>
           </div>
-        ) : null}
+        ) : <CircularProgress className="circularProgress" />}
       </div>
     );
   }

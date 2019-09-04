@@ -39,16 +39,15 @@ const formatter = new Intl.NumberFormat('en-US', {
 });
 
 class ScoreBoard extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      curScoreIndex: 7
-    }
+
+  componentDidMount() {
+    const { curScoreIndex, setNextScore } = this.props;
+    const score = formatter.format(scoreAmounts[14 - curScoreIndex])
+    setNextScore(score);
   }
 
   render() {
-    const { container, mobileOpen, handleDrawerToggle } = this.props;
-    const { curScoreIndex } = this.state;
+    const { container, mobileOpen, handleDrawerToggle, curScoreIndex } = this.props;
     return (
       <nav className="drawer" aria-label="mailbox folders">
         <Hidden mdUp implementation="css">

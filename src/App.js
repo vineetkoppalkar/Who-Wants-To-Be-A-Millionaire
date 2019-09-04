@@ -25,7 +25,9 @@ class App extends Component {
       questionsData: [],
       curQuestion: null,
       curQuestionIndex: 0,
-      mobileOpen: false
+      mobileOpen: false,
+      currentScore: '0',
+      nextScore: '0'
     };
   }
 
@@ -92,8 +94,16 @@ class App extends Component {
     this.setState({ mobileOpen: !mobileOpen });
   };
 
+  setCurrentScore = (score) => {
+    this.setState({currentScore: score});
+  }
+
+  setNextScore = (score) => {
+    this.setState({nextScore: score});
+  }
+
   render() {
-    const { curQuestion, mobileOpen } = this.state;
+    const { curQuestion, mobileOpen, curQuestionIndex, currentScore, nextScore } = this.state;
     return (
       <MuiThemeProvider theme={theme}>
         <div className="root">
@@ -106,6 +116,9 @@ class App extends Component {
             <QuestionBoard
               question={curQuestion}
               onOptionSelect={this.verifyAnswer}
+              currentScore={currentScore}
+              nextScore={nextScore}
+              setCurrentScore={this.setCurrentScore}
             />
             <span className="author">Made by Vineet Koppalkar</span>
             <div className="life-lines-container">
@@ -116,6 +129,8 @@ class App extends Component {
             container={this.props.container}
             mobileOpen={mobileOpen}
             handleDrawerToggle={this.handleDrawerToggle}
+            curScoreIndex={curQuestionIndex}
+            setNextScore={this.setNextScore}
           />
         </div>
       </MuiThemeProvider>

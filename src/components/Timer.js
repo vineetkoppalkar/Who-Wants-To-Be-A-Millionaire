@@ -26,12 +26,19 @@ class Timer extends Component {
     }, 1000)
   }
 
+  resetTimer = () => {
+    this.setState({
+      timerValue: 60,
+      progressValue : 100
+    })
+  }
+
   render() {
     const { timerValue, progressValue } = this.state;
     return (
       <div className="timer-container">
         <Paper id="timer">
-          <CircularProgress id="circularProgress" variant="static" value={progressValue} />
+          <CircularProgress className="circularProgress" variant="static" value={progressValue} />
           <h2 id="timer-value">{timerValue}</h2>
         </Paper>
       </div>
