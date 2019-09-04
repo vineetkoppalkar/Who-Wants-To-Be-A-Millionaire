@@ -107,6 +107,7 @@ class App extends Component {
               question={curQuestion}
               onOptionSelect={this.verifyAnswer}
             />
+            <span className="author">Made by Vineet Koppalkar</span>
             <div className="life-lines-container">
               <LifeLines />
             </div>

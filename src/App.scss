@@ -11,8 +11,14 @@
 
 .life-lines-container {
   margin: 0 auto;
-  
+
   @media screen and (min-width: "960px") {
     width: 50%;
   }
+}
+
+.author {
+  color: #6b6b6b;
+  font-style: italic;
+  float: right;
 }
