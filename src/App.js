@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
 
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import Paper from "@material-ui/core/Paper";
 
 import CustomAppBar from "./components/CustomAppBar";
 import QuestionBoard from "./components/QuestionBoard";
@@ -14,8 +13,8 @@ import "./App.scss";
 
 const theme = createMuiTheme({
   palette: {
-    type: 'dark',
-  },
+    type: "dark"
+  }
 });
 
 class App extends Component {
@@ -26,8 +25,8 @@ class App extends Component {
       curQuestion: null,
       curQuestionIndex: 0,
       mobileOpen: false,
-      currentScore: '0',
-      nextScore: '0'
+      currentScore: "0",
+      nextScore: "0"
     };
   }
 
@@ -94,21 +93,27 @@ class App extends Component {
     this.setState({ mobileOpen: !mobileOpen });
   };
 
-  setCurrentScore = (score) => {
-    this.setState({currentScore: score});
-  }
+  setCurrentScore = score => {
+    this.setState({ currentScore: score });
+  };
 
-  setNextScore = (score) => {
-    this.setState({nextScore: score});
-  }
+  setNextScore = score => {
+    this.setState({ nextScore: score });
+  };
 
   render() {
-    const { curQuestion, mobileOpen, curQuestionIndex, currentScore, nextScore } = this.state;
+    const {
+      curQuestion,
+      mobileOpen,
+      curQuestionIndex,
+      currentScore,
+      nextScore
+    } = this.state;
     return (
       <MuiThemeProvider theme={theme}>
         <div className="root">
           <CssBaseline />
-          <CustomAppBar 
+          <CustomAppBar
             title="Who Wants to Be a Millionaire"
             handleDrawerToggle={this.handleDrawerToggle}
           />
@@ -125,7 +130,7 @@ class App extends Component {
               <LifeLines />
             </div>
           </main>
-          <ScoreBoard 
+          <ScoreBoard
             container={this.props.container}
             mobileOpen={mobileOpen}
             handleDrawerToggle={this.handleDrawerToggle}

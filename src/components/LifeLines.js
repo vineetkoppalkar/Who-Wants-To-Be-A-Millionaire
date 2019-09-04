@@ -1,27 +1,27 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import Grid from '@material-ui/core/Grid';
+import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 
-import './LifeLines.scss';
+import "./LifeLines.scss";
 
 class LifeLines extends Component {
   render() {
     return (
-      <Grid container >
+      <Grid container>
         <Grid item xs={4}>
           <Paper className="life-line">
-            <h4 style={{margin: 0}}>Life line</h4>
+            <h4 style={{ margin: 0 }}>Life line</h4>
           </Paper>
         </Grid>
         <Grid item xs={4}>
           <Paper className="life-line">
-            <h4 style={{margin: 0}}>Life line</h4>
+            <h4 style={{ margin: 0 }}>Life line</h4>
           </Paper>
         </Grid>
         <Grid item xs={4}>
           <Paper className="life-line">
-            <h4 style={{margin: 0}}>Life line</h4>
+            <h4 style={{ margin: 0 }}>Life line</h4>
           </Paper>
         </Grid>
       </Grid>

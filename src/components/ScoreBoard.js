@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 import Divider from "@material-ui/core/Divider";
 import Drawer from "@material-ui/core/Drawer";
@@ -6,9 +6,9 @@ import Hidden from "@material-ui/core/Hidden";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
-import Button from '@material-ui/core/Button';
+import Button from "@material-ui/core/Button";
 
-import LifeLines from './LifeLines';
+import LifeLines from "./LifeLines";
 
 import "./ScoreBoard.scss";
 
@@ -17,7 +17,7 @@ const scoreAmounts = [
   200,
   300,
   500,
-  1000,  // 4
+  1000, // 4
   2000,
   4000,
   8000,
@@ -28,26 +28,30 @@ const scoreAmounts = [
   250000,
   500000,
   1000000 // 14
-]
+];
 
 const reversedScoreAmounts = scoreAmounts.reverse();
 
-const formatter = new Intl.NumberFormat('en-US', {
-  style: 'currency',
-  currency: 'USD',
+const formatter = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD",
   minimumFractionDigits: 0
 });
 
 class ScoreBoard extends Component {
-
   componentDidMount() {
     const { curScoreIndex, setNextScore } = this.props;
-    const score = formatter.format(scoreAmounts[14 - curScoreIndex])
+    const score = formatter.format(scoreAmounts[14 - curScoreIndex]);
     setNextScore(score);
   }
 
   render() {
-    const { container, mobileOpen, handleDrawerToggle, curScoreIndex } = this.props;
+    const {
+      container,
+      mobileOpen,
+      handleDrawerToggle,
+      curScoreIndex
+    } = this.props;
     return (
       <nav className="drawer" aria-label="mailbox folders">
         <Hidden mdUp implementation="css">
@@ -70,34 +74,43 @@ class ScoreBoard extends Component {
                 {reversedScoreAmounts.map((scoreAmount, index) => {
                   const questionNumber = reversedScoreAmounts.length - index;
                   if (questionNumber - 1 === curScoreIndex) {
-                    return <ListItem key={scoreAmount}>
-                      <Button 
-                        variant="outlined" 
-                        className="score-amount"
-                        color="inherit"
-                      >
-                        {`${questionNumber}) ${formatter.format(scoreAmount)}`}
-                      </Button>
-                    </ListItem>
+                    return (
+                      <ListItem key={scoreAmount}>
+                        <Button
+                          variant="outlined"
+                          className="score-amount"
+                          color="inherit"
+                        >
+                          {`${questionNumber}) ${formatter.format(
+                            scoreAmount
+                          )}`}
+                        </Button>
+                      </ListItem>
+                    );
                   } else if (questionNumber - 1 < curScoreIndex) {
-                    return <ListItem key={scoreAmount}>
-                      <Button 
-                        variant="outlined" 
-                        className="score-amount"
-                      >
-                        {`${questionNumber}) ${formatter.format(scoreAmount)}`}
-                      </Button>
-                    </ListItem>
+                    return (
+                      <ListItem key={scoreAmount}>
+                        <Button variant="outlined" className="score-amount">
+                          {`${questionNumber}) ${formatter.format(
+                            scoreAmount
+                          )}`}
+                        </Button>
+                      </ListItem>
+                    );
                   } else {
-                    return <ListItem key={scoreAmount}>
-                      <Button 
-                        variant="outlined" 
-                        className="score-amount"
-                        disabled
-                      >
-                        {`${questionNumber}) ${formatter.format(scoreAmount)}`}
-                      </Button>
-                    </ListItem>
+                    return (
+                      <ListItem key={scoreAmount}>
+                        <Button
+                          variant="outlined"
+                          className="score-amount"
+                          disabled
+                        >
+                          {`${questionNumber}) ${formatter.format(
+                            scoreAmount
+                          )}`}
+                        </Button>
+                      </ListItem>
+                    );
                   }
                 })}
               </List>
@@ -105,11 +118,7 @@ class ScoreBoard extends Component {
           </Drawer>
         </Hidden>
         <Hidden smDown implementation="css">
-          <Drawer
-            variant="permanent"
-            anchor="right"
-            open
-          >
+          <Drawer variant="permanent" anchor="right" open>
             <div className="drawer-content">
               <div className="life-lines-wrapper">
                 <LifeLines />
@@ -119,34 +128,43 @@ class ScoreBoard extends Component {
                 {reversedScoreAmounts.map((scoreAmount, index) => {
                   const questionNumber = reversedScoreAmounts.length - index;
                   if (questionNumber - 1 === curScoreIndex) {
-                    return <ListItem key={scoreAmount}>
-                      <Button 
-                        variant="outlined" 
-                        className="score-amount"
-                        color="inherit"
-                      >
-                        {`${questionNumber}) ${formatter.format(scoreAmount)}`}
-                      </Button>
-                    </ListItem>
+                    return (
+                      <ListItem key={scoreAmount}>
+                        <Button
+                          variant="outlined"
+                          className="score-amount"
+                          color="inherit"
+                        >
+                          {`${questionNumber}) ${formatter.format(
+                            scoreAmount
+                          )}`}
+                        </Button>
+                      </ListItem>
+                    );
                   } else if (questionNumber - 1 < curScoreIndex) {
-                    return <ListItem key={scoreAmount}>
-                      <Button 
-                        variant="outlined" 
-                        className="score-amount"
-                      >
-                        {`${questionNumber}) ${formatter.format(scoreAmount)}`}
-                      </Button>
-                    </ListItem>
+                    return (
+                      <ListItem key={scoreAmount}>
+                        <Button variant="outlined" className="score-amount">
+                          {`${questionNumber}) ${formatter.format(
+                            scoreAmount
+                          )}`}
+                        </Button>
+                      </ListItem>
+                    );
                   } else {
-                    return <ListItem key={scoreAmount}>
-                      <Button 
-                        variant="outlined" 
-                        className="score-amount"
-                        disabled
-                      >
-                        {`${questionNumber}) ${formatter.format(scoreAmount)}`}
-                      </Button>
-                    </ListItem>
+                    return (
+                      <ListItem key={scoreAmount}>
+                        <Button
+                          variant="outlined"
+                          className="score-amount"
+                          disabled
+                        >
+                          {`${questionNumber}) ${formatter.format(
+                            scoreAmount
+                          )}`}
+                        </Button>
+                      </ListItem>
+                    );
                   }
                 })}
               </List>
