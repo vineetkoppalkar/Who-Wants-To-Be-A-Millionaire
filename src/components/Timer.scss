@@ -19,4 +19,15 @@
   border-radius: 50%;
   width: 80px;
   height: 80px;
+
+  &-value {
+    position: fixed;
+    margin-top: -1px;
+  }
+}
+
+#circularProgress {
+  color: white;
+  width: 60px !important;
+  height: 60px !important;
 }
