@@ -32,6 +32,12 @@ const scoreAmounts = [
 
 const reversedScoreAmounts = scoreAmounts.reverse();
 
+const formatter = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+  minimumFractionDigits: 0
+});
+
 class ScoreBoard extends Component {
   constructor(props) {
     super(props);
@@ -71,7 +77,7 @@ class ScoreBoard extends Component {
                         className="score-amount"
                         color="inherit"
                       >
-                        {`${questionNumber}) $${scoreAmount}`}
+                        {`${questionNumber}) ${formatter.format(scoreAmount)}`}
                       </Button>
                     </ListItem>
                   } else if (questionNumber - 1 < curScoreIndex) {
@@ -80,7 +86,7 @@ class ScoreBoard extends Component {
                         variant="outlined" 
                         className="score-amount"
                       >
-                        {`${questionNumber}) $${scoreAmount}`}
+                        {`${questionNumber}) ${formatter.format(scoreAmount)}`}
                       </Button>
                     </ListItem>
                   } else {
@@ -90,7 +96,7 @@ class ScoreBoard extends Component {
                         className="score-amount"
                         disabled
                       >
-                        {`${questionNumber}) $${scoreAmount}`}
+                        {`${questionNumber}) ${formatter.format(scoreAmount)}`}
                       </Button>
                     </ListItem>
                   }
@@ -120,7 +126,7 @@ class ScoreBoard extends Component {
                         className="score-amount"
                         color="inherit"
                       >
-                        {`${questionNumber}) $${scoreAmount}`}
+                        {`${questionNumber}) ${formatter.format(scoreAmount)}`}
                       </Button>
                     </ListItem>
                   } else if (questionNumber - 1 < curScoreIndex) {
@@ -129,7 +135,7 @@ class ScoreBoard extends Component {
                         variant="outlined" 
                         className="score-amount"
                       >
-                        {`${questionNumber}) $${scoreAmount}`}
+                        {`${questionNumber}) ${formatter.format(scoreAmount)}`}
                       </Button>
                     </ListItem>
                   } else {
@@ -139,7 +145,7 @@ class ScoreBoard extends Component {
                         className="score-amount"
                         disabled
                       >
-                        {`${questionNumber}) $${scoreAmount}`}
+                        {`${questionNumber}) ${formatter.format(scoreAmount)}`}
                       </Button>
                     </ListItem>
                   }
