@@ -11,17 +11,17 @@ class LifeLines extends Component {
       <Grid container >
         <Grid item xs={4}>
           <Paper className="life-line">
-            <h6 style={{margin: 0}}>Life line</h6>
+            <h4 style={{margin: 0}}>Life line</h4>
           </Paper>
         </Grid>
         <Grid item xs={4}>
           <Paper className="life-line">
-            <h6 style={{margin: 0}}>Life line</h6>
+            <h4 style={{margin: 0}}>Life line</h4>
           </Paper>
         </Grid>
         <Grid item xs={4}>
           <Paper className="life-line">
-            <h6 style={{margin: 0}}>Life line</h6>
+            <h4 style={{margin: 0}}>Life line</h4>
           </Paper>
         </Grid>
       </Grid>

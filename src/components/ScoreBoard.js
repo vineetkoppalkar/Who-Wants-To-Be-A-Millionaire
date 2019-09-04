@@ -57,7 +57,9 @@ class ScoreBoard extends Component {
             }}
           >
             <div className="drawer-content">
-              <div className="toolbar" />
+              <div className="life-lines-wrapper">
+                <LifeLines />
+              </div>
               <Divider />
               <List>
                 {reversedScoreAmounts.map((scoreAmount, index) => {
@@ -104,8 +106,9 @@ class ScoreBoard extends Component {
             open
           >
             <div className="drawer-content">
-              <div className="toolbar" />
-              <LifeLines />
+              <div className="life-lines-wrapper">
+                <LifeLines />
+              </div>
               <Divider />
               <List>
                 {reversedScoreAmounts.map((scoreAmount, index) => {

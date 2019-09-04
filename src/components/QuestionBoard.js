@@ -34,7 +34,7 @@ class QuestionBoard extends Component {
             <ScoreTracker />
             <Paper className="question-board">
               <Timer />
-              <h4 style={{margin: "15px 0 25px"}}>{decodeURIComponent(question.question)}</h4>
+              <h2 style={{margin: "15px 0 25px"}}>{decodeURIComponent(question.question)}</h2>
               <Grid container spacing={3}>
                 <Grid item xs={6}>
                   <Button

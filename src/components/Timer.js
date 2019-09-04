@@ -9,7 +9,7 @@ class Timer extends Component {
     return (
       <div className="timer-container">
         <Paper id="timer">
-          <h6 style={{margin: 0}}>Timer</h6>
+          <h4 style={{margin: 0}}>Timer</h4>
         </Paper>
       </div>
     );

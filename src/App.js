@@ -3,9 +3,12 @@ import axios from "axios";
 
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import CssBaseline from "@material-ui/core/CssBaseline";
+import Paper from "@material-ui/core/Paper";
+
 import CustomAppBar from "./components/CustomAppBar";
 import QuestionBoard from "./components/QuestionBoard";
 import ScoreBoard from "./components/ScoreBoard";
+import LifeLines from "./components/LifeLines";
 
 import "./App.scss";
 
@@ -104,6 +107,9 @@ class App extends Component {
               question={curQuestion}
               onOptionSelect={this.verifyAnswer}
             />
+            <div className="life-lines-container">
+              <LifeLines />
+            </div>
           </main>
           <ScoreBoard 
             container={this.props.container}
