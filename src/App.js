@@ -156,8 +156,12 @@ class App extends Component {
     this.setState({ mobileOpen: !mobileOpen });
   };
 
-  handleTimerExpire = () => {
+  handleTimerExpire = async () => {
     alert("Time has ended!");
+    this.questionBoard.handleCorrectSelectedOptionStyle();
+    await delay(2000);
+    this.questionBoard.resetTimer();
+    this.questionBoard.resetButtonStyles();
   }
 
   render() {
