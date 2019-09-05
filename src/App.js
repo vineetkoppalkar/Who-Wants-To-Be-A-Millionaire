@@ -53,6 +53,8 @@ const shuffle = a => {
   return a;
 };
 
+const delay = ms => new Promise(res => setTimeout(res, ms));
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -110,12 +112,20 @@ class App extends Component {
     return questionsData[curQuestionIndex];
   };
 
-  verifyAnswer = option => {
+  verifyAnswer = async option => {
     const { questionsData, curQuestionIndex } = this.state;
     const curQuestion = questionsData[curQuestionIndex];
+    await delay(100);
+    this.questionBoard.handleButtonSelect();
+    this.questionBoard.pauseTimer();
+
+    await delay(2000);
+    this.questionBoard.handleCorrectSelectedOptionStyle();
+    await delay(2000);
 
     if (curQuestion.correct_answer === option) {
-      alert("You are correct!");
+      // alert("You are correct!");
+      console.log("You are correct!");
       if (curQuestionIndex !== questionsData.length - 1) {
         const newCurQuestionIndex = curQuestionIndex + 1;
         const newCurQuestion = questionsData[newCurQuestionIndex];
@@ -130,13 +140,15 @@ class App extends Component {
           nextScore: formattedScoreAmounts[formattedScoreAmounts.length - newCurQuestionIndex - 1],
           currentScore: formattedScoreAmounts[formattedScoreAmounts.length - curQuestionIndex - 1]
         });
-        this.questionBoard.resetTimer();
       }
     } else {
-      alert(
-        `You are wrong! The correct answer is: ${curQuestion.correct_answer}`
-      );
+      console.log(`You are wrong! The correct answer is: ${decodeURIComponent(curQuestion.correct_answer)}`)
+      // alert(
+      //   `You are wrong! The correct answer is: ${decodeURIComponent(curQuestion.correct_answer)}`
+      // );
     }
+    this.questionBoard.resetTimer();
+    this.questionBoard.resetButtonStyles();
   };
 
   handleDrawerToggle = () => {
