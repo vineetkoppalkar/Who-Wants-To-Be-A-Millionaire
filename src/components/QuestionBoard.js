@@ -88,7 +88,9 @@ class QuestionBoard extends Component {
             </Paper>
           </div>
         ) : (
-          <CircularProgress className="circularProgress" />
+          <div className="question-loading">
+            <CircularProgress className="circularProgress" />
+          </div>
         )}
       </div>
     );
