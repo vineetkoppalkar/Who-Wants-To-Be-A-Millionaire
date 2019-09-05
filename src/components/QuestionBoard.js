@@ -10,22 +10,8 @@ import Timer from "./Timer";
 import ScoreTracker from "./ScoreTracker";
 
 class QuestionBoard extends Component {
-  shuffle = a => {
-    for (let i = a.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [a[i], a[j]] = [a[j], a[i]];
-    }
-    return a;
-  };
-
   render() {
-    const { question, onOptionSelect, currentScore, nextScore, handleTimerExpire } = this.props;
-    let shuffledOptions = [];
-    if (question) {
-      shuffledOptions = this.shuffle(
-        [question.correct_answer].concat(question.incorrect_answers)
-      );
-    }
+    const { question, onOptionSelect, currentScore, nextScore, handleTimerExpire, shuffledOptions } = this.props;
 
     return (
       <div>

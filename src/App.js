@@ -45,12 +45,21 @@ const formatter = new Intl.NumberFormat("en-US", {
 
 const formattedScoreAmounts = reversedScoreAmounts.map(scoreAmount => formatter.format(scoreAmount));
 
+const shuffle = a => {
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+};
+
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       questionsData: [],
       curQuestion: null,
+      shuffledOptions: [],
       curQuestionIndex: 0,
       mobileOpen: false,
       currentScore: "0",
@@ -81,9 +90,16 @@ class App extends Component {
         allResponses.forEach(res => {
           questionsData = questionsData.concat(res.data.results);
         });
+
+        const curQuestion = questionsData[0];
+        const shuffledOptions = shuffle(
+          [curQuestion.correct_answer].concat(curQuestion.incorrect_answers)
+        );
+
         this.setState({
           questionsData,
-          curQuestion: questionsData[0]
+          curQuestion,
+          shuffledOptions
         });
       })
       .catch(e => console.log(e));
@@ -102,8 +118,14 @@ class App extends Component {
       alert("You are correct!");
       if (curQuestionIndex !== questionsData.length - 1) {
         const newCurQuestionIndex = curQuestionIndex + 1;
+        const newCurQuestion = questionsData[newCurQuestionIndex];
+        const shuffledOptions = shuffle(
+          [newCurQuestion.correct_answer].concat(newCurQuestion.incorrect_answers)
+        );
+        
         this.setState({
-          curQuestion: questionsData[newCurQuestionIndex],
+          curQuestion: newCurQuestion,
+          shuffledOptions,
           curQuestionIndex: newCurQuestionIndex,
           nextScore: formattedScoreAmounts[formattedScoreAmounts.length - newCurQuestionIndex - 1],
           currentScore: formattedScoreAmounts[formattedScoreAmounts.length - curQuestionIndex - 1]
@@ -128,6 +150,7 @@ class App extends Component {
   render() {
     const {
       curQuestion,
+      shuffledOptions,
       mobileOpen,
       curQuestionIndex,
       currentScore,
@@ -144,6 +167,7 @@ class App extends Component {
           <main className="content">
             <QuestionBoard
               question={curQuestion}
+              shuffledOptions={shuffledOptions}
               onOptionSelect={this.verifyAnswer}
               currentScore={currentScore}
               nextScore={nextScore}
