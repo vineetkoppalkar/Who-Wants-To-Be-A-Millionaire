@@ -32,7 +32,7 @@ class WinModal extends Component {
               </p>
             ) : (
               <p className="modal-text">
-                🎉 You are a millionaire! 🎉
+                <span role="img" aria-label="party popper">🎉</span> You are a millionaire! <span role="img" aria-label="party popper">🎉</span>
               </p>
             )}
             <p className="modal-score-title">Your score:</p>

@@ -73,7 +73,7 @@ class App extends Component {
     };
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.setupGame();
   }
 
@@ -124,7 +124,7 @@ class App extends Component {
   };
 
   verifyAnswer = async option => {
-    const { questionsData, curQuestionIndex, hasGameEnded } = this.state;
+    const { questionsData, curQuestionIndex } = this.state;
     const curQuestion = questionsData[curQuestionIndex];
     await delay(100);
     this.questionBoard.handleButtonSelect();

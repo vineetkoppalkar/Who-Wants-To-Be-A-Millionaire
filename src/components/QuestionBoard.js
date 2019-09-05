@@ -34,7 +34,7 @@ class QuestionBoard extends Component {
   }
 
   handleButtonSelect = () => {
-    const { selectedBtnIndex, firstOptionClass, secondOptionClass, thirdOptionClass, fourthOptionClass } = this.state;
+    const { selectedBtnIndex } = this.state;
     switch (selectedBtnIndex) {
       case 0:
         this.setState({
@@ -62,8 +62,7 @@ class QuestionBoard extends Component {
   }
 
   handleCorrectSelectedOptionStyle = () => {
-    const { firstOptionClass, secondOptionClass, thirdOptionClass, fourthOptionClass } = this.state;
-    const { question, shuffledOptions, correctAnswerIndex } = this.props;
+    const { correctAnswerIndex } = this.props;
 
     switch (correctAnswerIndex) {
       case 0:
