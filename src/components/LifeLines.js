@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
-
+import Button from "@material-ui/core/Button";
 import People from '@material-ui/icons/PeopleOutlined';
 import Call from '@material-ui/icons/Call';
 
@@ -12,22 +12,28 @@ class LifeLines extends Component {
   render() {
     return (
       <Grid container>
-        <Grid item xs={4}>
-          <Paper className="life-line">
-            <People />
-          </Paper>
+        <Grid item xs={4} className="life-line-container">
+          <Button className="hovicon effect-1 sub-a">
+            <Paper className="life-line">
+              <People />
+            </Paper>
+          </Button>
           <p className="life-line-description">Audience Poll</p>
         </Grid>
-        <Grid item xs={4}>
-          <Paper className="life-line">
-            <Call />
-          </Paper>
+        <Grid item xs={4} className="life-line-container">
+          <Button className="hovicon effect-1 sub-a">
+            <Paper className="life-line">
+              <Call />
+            </Paper>
+          </Button>
           <p className="life-line-description">Phone a friend</p>
         </Grid>
-        <Grid item xs={4}>
-          <Paper className="life-line">
-            <h4 style={{ margin: 0 }}>50/50</h4>
-          </Paper>
+        <Grid item xs={4} className="life-line-container">
+          <Button className="hovicon effect-1 sub-a">
+            <Paper className="life-line">
+              <h4 style={{ margin: 0 }}>50/50</h4>
+            </Paper>
+          </Button>
           <p className="life-line-description">Fifty-Fifty</p>
         </Grid>
       </Grid>

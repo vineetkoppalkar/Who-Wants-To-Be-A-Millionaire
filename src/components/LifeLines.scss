@@ -8,9 +8,71 @@
   width: 70px;
   height: 70px;
   margin: 10px auto 15px;
+
+  &-container {
+    text-align: center;
+  }
+
+  &-description {
+    text-align: center;
+    margin: 0 8px;
+  }
 }
 
-.life-line-description {
+.hovicon {
+  display: inline-block;
+  font-size: 45px;
+  line-height: 90px;
+  cursor: pointer;
+
+  border-radius: 50%;
   text-align: center;
-  margin: 0 8px;
+  position: relative;
+  text-decoration: none;
+  z-index: 1;
+  color: #fff;
+}
+
+.hovicon:after {
+  pointer-events: none;
+  position: absolute;
+  width: 63px;
+  height: 63px;
+  border-radius: 50%;
+  content:'';
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+}
+
+.hovicon.effect-1 {
+  background: none !important;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+.hovicon.effect-1:after {
+  top: 12px;
+  padding: 7px;
+  box-shadow: 0 0 0 4px #fff;
+  -webkit-transition: -webkit-transform 0.2s, opacity 0.2s;
+  -webkit-transform: scale(.8);
+  -moz-transition: -moz-transform 0.2s, opacity 0.2s;
+  -moz-transform: scale(.8);
+  -ms-transform: scale(.8);
+  transition: transform 0.2s, opacity 0.2s;
+  transform: scale(.8);
+  opacity: 0;
+}
+/* Effect 1a */
+.hovicon.effect-1.sub-a:hover i {
+  color: #41ab6b;
+}
+.hovicon.effect-1.sub-a:hover:after {
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+  opacity: 1;
 }
