@@ -1,0 +1,41 @@
+.modal {
+  &-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &-content {
+    width: 90%;
+    max-width: 700px;
+    padding: 20px;
+    background: #303030;
+    text-align: center;
+
+    @media screen and (min-width: "720px") {
+      width: 75%;
+    }
+
+    @media screen and (min-width: "960px") {
+      width: 50%;
+    }
+  }
+
+  &-score-title {
+    margin: 0;
+    margin-top: 10px;
+  }
+
+  &-score {
+    margin: 0;
+    font-size: 3em;
+  }
+
+  &-text {
+    text-align: center;
+  }
+
+  &-btn {
+    margin: 15px 0 !important;
+  }
+}

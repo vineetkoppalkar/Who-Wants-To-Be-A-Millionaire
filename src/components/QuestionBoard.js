@@ -14,6 +14,7 @@ class QuestionBoard extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      allowSelecting: true,
       selectedBtnIndex: null,
       firstOptionClass: '',
       secondOptionClass: '',
@@ -26,7 +27,10 @@ class QuestionBoard extends Component {
   }
 
   setSelectedBtnIndex = (index) => {
-    this.setState({selectedBtnIndex: index});
+    this.setState({
+      allowSelecting: false,
+      selectedBtnIndex: index
+    });
   }
 
   handleButtonSelect = () => {
@@ -59,28 +63,30 @@ class QuestionBoard extends Component {
 
   handleCorrectSelectedOptionStyle = () => {
     const { firstOptionClass, secondOptionClass, thirdOptionClass, fourthOptionClass } = this.state;
-    const { question, shuffledOptions } = this.props;
-
-    const correctAnswerIndex = shuffledOptions.findIndex(option => option === question.correct_answer);
+    const { question, shuffledOptions, correctAnswerIndex } = this.props;
 
     switch (correctAnswerIndex) {
       case 0:
         this.setState({
+          allowSelecting: false,
           firstOptionClass: "correct-answer"
         });
         return;
       case 1:
         this.setState({
+          allowSelecting: false,
           secondOptionClass: "correct-answer"
         });
         return;
       case 2:
         this.setState({
+          allowSelecting: false,
           thirdOptionClass: "correct-answer"
         });
         return;
       case 3:
         this.setState({
+          allowSelecting: false,
           fourthOptionClass: "correct-answer"
         });
         return;
@@ -91,6 +97,7 @@ class QuestionBoard extends Component {
 
   resetButtonStyles = () => {
     this.setState({
+      allowSelecting: true,
       selectedBtnIndex: null,
       firstOptionClass: '',
       secondOptionClass: '',
@@ -108,7 +115,7 @@ class QuestionBoard extends Component {
   }
 
   render() {
-    const { selectedBtnIndex, firstOptionClass, secondOptionClass, thirdOptionClass, fourthOptionClass } = this.state;
+    const { allowSelecting, firstOptionClass, secondOptionClass, thirdOptionClass, fourthOptionClass } = this.state;
     const { question, onOptionSelect, currentScore, nextScore, handleTimerExpire, shuffledOptions } = this.props;
 
     return (
@@ -131,7 +138,7 @@ class QuestionBoard extends Component {
                     className={firstOptionClass}
                     style={{ width: "100%" }}
                     onClick={() => {
-                      if (selectedBtnIndex === null) {
+                      if (allowSelecting) {
                         this.setSelectedBtnIndex(0);
                         onOptionSelect(shuffledOptions[0]);
                       }
@@ -148,7 +155,7 @@ class QuestionBoard extends Component {
                     className={secondOptionClass}
                     style={{ width: "100%" }}
                     onClick={() => {
-                      if (selectedBtnIndex === null) {
+                      if (allowSelecting) {
                         this.setSelectedBtnIndex(1);
                         onOptionSelect(shuffledOptions[1])
                       }
@@ -167,7 +174,7 @@ class QuestionBoard extends Component {
                     className={thirdOptionClass}
                     style={{ width: "100%" }}
                     onClick={() => {
-                      if (selectedBtnIndex === null) {
+                      if (allowSelecting) {
                         this.setSelectedBtnIndex(2);
                         onOptionSelect(shuffledOptions[2])
                       }
@@ -184,7 +191,7 @@ class QuestionBoard extends Component {
                     className={fourthOptionClass}
                     style={{ width: "100%" }}
                     onClick={() => {
-                      if (selectedBtnIndex === null) {
+                      if (allowSelecting) {
                         this.setSelectedBtnIndex(3);
                         onOptionSelect(shuffledOptions[3])
                       }

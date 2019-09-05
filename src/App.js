@@ -8,6 +8,7 @@ import CustomAppBar from "./components/CustomAppBar";
 import QuestionBoard from "./components/QuestionBoard";
 import ScoreBoard from "./components/ScoreBoard";
 import LifeLines from "./components/LifeLines";
+import WinModal from "./components/WinModal";
 
 import "./App.scss";
 
@@ -62,18 +63,21 @@ class App extends Component {
       questionsData: [],
       curQuestion: null,
       shuffledOptions: [],
+      correctAnswerIndex: null,
       curQuestionIndex: 0,
       mobileOpen: false,
-      currentScore: "0",
-      nextScore: formattedScoreAmounts[formattedScoreAmounts.length - 1]
+      currentScore: formatter.format(0),
+      nextScore: formattedScoreAmounts[formattedScoreAmounts.length - 1],
+      hasGameEnded: false,
+      modalTitle: "Game Over"
     };
   }
 
   componentWillMount() {
-    this.generateQuestions();
+    this.setupGame();
   }
 
-  generateQuestions = async () => {
+  setupGame = async () => {
     const promises = [
       axios.get(
         "https://opentdb.com/api.php?amount=5&category=15&difficulty=easy&type=multiple&encode=url3986"
@@ -97,11 +101,18 @@ class App extends Component {
         const shuffledOptions = shuffle(
           [curQuestion.correct_answer].concat(curQuestion.incorrect_answers)
         );
-
+        const correctAnswerIndex = shuffledOptions.findIndex(option => option === curQuestion.correct_answer);
+        
         this.setState({
           questionsData,
           curQuestion,
-          shuffledOptions
+          shuffledOptions,
+          correctAnswerIndex,
+          curQuestionIndex: 0,
+          currentScore: formatter.format(0),
+          nextScore: formattedScoreAmounts[formattedScoreAmounts.length - 1],
+          hasGameEnded: false,
+          modalTitle: "Game Over"
         });
       })
       .catch(e => console.log(e));
@@ -113,7 +124,7 @@ class App extends Component {
   };
 
   verifyAnswer = async option => {
-    const { questionsData, curQuestionIndex } = this.state;
+    const { questionsData, curQuestionIndex, hasGameEnded } = this.state;
     const curQuestion = questionsData[curQuestionIndex];
     await delay(100);
     this.questionBoard.handleButtonSelect();
@@ -124,31 +135,39 @@ class App extends Component {
     await delay(2000);
 
     if (curQuestion.correct_answer === option) {
-      // alert("You are correct!");
-      console.log("You are correct!");
       if (curQuestionIndex !== questionsData.length - 1) {
         const newCurQuestionIndex = curQuestionIndex + 1;
         const newCurQuestion = questionsData[newCurQuestionIndex];
         const shuffledOptions = shuffle(
           [newCurQuestion.correct_answer].concat(newCurQuestion.incorrect_answers)
         );
+        const correctAnswerIndex = shuffledOptions.findIndex(option => option === newCurQuestion.correct_answer);
         
         this.setState({
           curQuestion: newCurQuestion,
           shuffledOptions,
+          correctAnswerIndex,
           curQuestionIndex: newCurQuestionIndex,
           nextScore: formattedScoreAmounts[formattedScoreAmounts.length - newCurQuestionIndex - 1],
           currentScore: formattedScoreAmounts[formattedScoreAmounts.length - curQuestionIndex - 1]
         });
+
+        this.questionBoard.resetTimer();
+        this.questionBoard.resetButtonStyles();
+      } else {
+        this.setState({
+          hasGameEnded: true,
+          modalTitle: "Congratulations!",
+          nextScore: "——",
+          currentScore: formattedScoreAmounts[0]
+        })
       }
     } else {
-      console.log(`You are wrong! The correct answer is: ${decodeURIComponent(curQuestion.correct_answer)}`)
-      // alert(
-      //   `You are wrong! The correct answer is: ${decodeURIComponent(curQuestion.correct_answer)}`
-      // );
+      this.setState({
+        hasGameEnded: true,
+        modalTitle: "Incorrect"
+      })
     }
-    this.questionBoard.resetTimer();
-    this.questionBoard.resetButtonStyles();
   };
 
   handleDrawerToggle = () => {
@@ -157,9 +176,16 @@ class App extends Component {
   };
 
   handleTimerExpire = async () => {
-    alert("Time has ended!");
     this.questionBoard.handleCorrectSelectedOptionStyle();
     await delay(2000);
+    this.setState({
+      hasGameEnded: true,
+      modalTitle: "Ran out of time!"
+    });
+  }
+
+  resetGame = () => {
+    this.setupGame();
     this.questionBoard.resetTimer();
     this.questionBoard.resetButtonStyles();
   }
@@ -168,10 +194,13 @@ class App extends Component {
     const {
       curQuestion,
       shuffledOptions,
+      correctAnswerIndex,
       mobileOpen,
       curQuestionIndex,
       currentScore,
-      nextScore
+      nextScore,
+      hasGameEnded,
+      modalTitle
     } = this.state;
     return (
       <MuiThemeProvider theme={theme}>
@@ -186,6 +215,7 @@ class App extends Component {
               onRef={ref => (this.questionBoard = ref)}
               question={curQuestion}
               shuffledOptions={shuffledOptions}
+              correctAnswerIndex={correctAnswerIndex}
               onOptionSelect={this.verifyAnswer}
               currentScore={currentScore}
               nextScore={nextScore}
@@ -204,6 +234,16 @@ class App extends Component {
             curScoreIndex={curQuestionIndex}
             scoreAmounts={formattedScoreAmounts}
           />
+
+          {hasGameEnded ? (
+            <WinModal
+              title={modalTitle}
+              open={hasGameEnded}
+              resetGame={this.resetGame}
+              score={currentScore}
+              correctAnswer={shuffledOptions[correctAnswerIndex]}
+            />
+          ) : null}
         </div>
       </MuiThemeProvider>
     );
