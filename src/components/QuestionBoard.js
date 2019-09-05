@@ -135,8 +135,7 @@ class QuestionBoard extends Component {
                 <Grid item xs={6}>
                   <Button
                     variant="contained"
-                    className={firstOptionClass}
-                    style={{ width: "100%" }}
+                    className={`question-option ${firstOptionClass}`}
                     onClick={() => {
                       if (allowSelecting) {
                         this.setSelectedBtnIndex(0);
@@ -152,8 +151,7 @@ class QuestionBoard extends Component {
                 <Grid item xs={6}>
                   <Button
                     variant="contained"
-                    className={secondOptionClass}
-                    style={{ width: "100%" }}
+                    className={`question-option ${secondOptionClass}`}
                     onClick={() => {
                       if (allowSelecting) {
                         this.setSelectedBtnIndex(1);
@@ -171,8 +169,7 @@ class QuestionBoard extends Component {
                 <Grid item xs={6}>
                   <Button
                     variant="contained"
-                    className={thirdOptionClass}
-                    style={{ width: "100%" }}
+                    className={`question-option ${thirdOptionClass}`}
                     onClick={() => {
                       if (allowSelecting) {
                         this.setSelectedBtnIndex(2);
@@ -188,8 +185,7 @@ class QuestionBoard extends Component {
                 <Grid item xs={6}>
                   <Button
                     variant="contained"
-                    className={fourthOptionClass}
-                    style={{ width: "100%" }}
+                    className={`question-option ${fourthOptionClass}`}
                     onClick={() => {
                       if (allowSelecting) {
                         this.setSelectedBtnIndex(3);
