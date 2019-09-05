@@ -16,6 +16,8 @@ class Timer extends Component {
   }
 
   componentDidMount() {
+    this.props.onRef(this);
+
     setInterval(() => {
       const { timerValue, progressValue } = this.state;
       if (timerValue > 0) {
@@ -34,10 +36,10 @@ class Timer extends Component {
     }, 1000);
   }
 
-  resetTimer = () => {
+  reset = () => {
     this.setState({
       hasHandledTimerExpire: false,
-      timerValue: 60,
+      timerValue: 61,
       progressValue: 100
     });
   };

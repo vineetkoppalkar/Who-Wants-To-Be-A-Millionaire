@@ -130,6 +130,7 @@ class App extends Component {
           nextScore: formattedScoreAmounts[formattedScoreAmounts.length - newCurQuestionIndex - 1],
           currentScore: formattedScoreAmounts[formattedScoreAmounts.length - curQuestionIndex - 1]
         });
+        this.questionBoard.resetTimer();
       }
     } else {
       alert(
@@ -166,6 +167,7 @@ class App extends Component {
           />
           <main className="content">
             <QuestionBoard
+              onRef={ref => (this.questionBoard = ref)}
               question={curQuestion}
               shuffledOptions={shuffledOptions}
               onOptionSelect={this.verifyAnswer}

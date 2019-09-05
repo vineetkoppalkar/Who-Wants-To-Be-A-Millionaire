@@ -10,6 +10,14 @@ import Timer from "./Timer";
 import ScoreTracker from "./ScoreTracker";
 
 class QuestionBoard extends Component {
+  componentDidMount() {
+    this.props.onRef(this);
+  }
+
+  resetTimer = () => {
+    this.timer.reset();
+  }
+
   render() {
     const { question, onOptionSelect, currentScore, nextScore, handleTimerExpire, shuffledOptions } = this.props;
 
@@ -19,7 +27,10 @@ class QuestionBoard extends Component {
         {question ? (
           <div>
             <Paper className="question-board">
-              <Timer handleTimerExpire={handleTimerExpire} />
+              <Timer
+                onRef={ref => (this.timer = ref)}
+                handleTimerExpire={handleTimerExpire}
+              />
               <h2 style={{ margin: "15px 0 25px" }}>
                 {decodeURIComponent(question.question)}
               </h2>
