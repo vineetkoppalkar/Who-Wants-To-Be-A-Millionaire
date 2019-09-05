@@ -19,7 +19,7 @@ class QuestionBoard extends Component {
   };
 
   render() {
-    const { question, onOptionSelect, currentScore, nextScore } = this.props;
+    const { question, onOptionSelect, currentScore, nextScore, handleTimerExpire } = this.props;
     let shuffledOptions = [];
     if (question) {
       shuffledOptions = this.shuffle(
@@ -33,7 +33,7 @@ class QuestionBoard extends Component {
         {question ? (
           <div>
             <Paper className="question-board">
-              <Timer />
+              <Timer handleTimerExpire={handleTimerExpire} />
               <h2 style={{ margin: "15px 0 25px" }}>
                 {decodeURIComponent(question.question)}
               </h2>

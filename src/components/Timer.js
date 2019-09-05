@@ -9,6 +9,7 @@ class Timer extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      hasHandledTimerExpire: false,
       timerValue: 60,
       progressValue: 100
     };
@@ -22,12 +23,20 @@ class Timer extends Component {
           timerValue: timerValue - 1,
           progressValue: progressValue - 1.67
         });
+      } else {
+        const { hasHandledTimerExpire } = this.state;
+        const { handleTimerExpire } = this.props;
+        if (!hasHandledTimerExpire) {
+          handleTimerExpire();
+          this.setState({hasHandledTimerExpire: true})
+        }
       }
     }, 1000);
   }
 
   resetTimer = () => {
     this.setState({
+      hasHandledTimerExpire: false,
       timerValue: 60,
       progressValue: 100
     });

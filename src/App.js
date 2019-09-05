@@ -17,6 +17,34 @@ const theme = createMuiTheme({
   }
 });
 
+const scoreAmounts = [
+  100,
+  200,
+  300,
+  500,
+  1000, // 4
+  2000,
+  4000,
+  8000,
+  16000,
+  32000,
+  64000, // 10
+  125000,
+  250000,
+  500000,
+  1000000 // 14
+];
+
+const reversedScoreAmounts = scoreAmounts.reverse();
+
+const formatter = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD",
+  minimumFractionDigits: 0
+});
+
+const formattedScoreAmounts = reversedScoreAmounts.map(scoreAmount => formatter.format(scoreAmount));
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -26,7 +54,7 @@ class App extends Component {
       curQuestionIndex: 0,
       mobileOpen: false,
       currentScore: "0",
-      nextScore: "0"
+      nextScore: formattedScoreAmounts[formattedScoreAmounts.length - 1]
     };
   }
 
@@ -72,13 +100,13 @@ class App extends Component {
 
     if (curQuestion.correct_answer === option) {
       alert("You are correct!");
-
       if (curQuestionIndex !== questionsData.length - 1) {
         const newCurQuestionIndex = curQuestionIndex + 1;
-
         this.setState({
           curQuestion: questionsData[newCurQuestionIndex],
-          curQuestionIndex: newCurQuestionIndex
+          curQuestionIndex: newCurQuestionIndex,
+          nextScore: formattedScoreAmounts[formattedScoreAmounts.length - newCurQuestionIndex - 1],
+          currentScore: formattedScoreAmounts[formattedScoreAmounts.length - curQuestionIndex - 1]
         });
       }
     } else {
@@ -93,13 +121,9 @@ class App extends Component {
     this.setState({ mobileOpen: !mobileOpen });
   };
 
-  setCurrentScore = score => {
-    this.setState({ currentScore: score });
-  };
-
-  setNextScore = score => {
-    this.setState({ nextScore: score });
-  };
+  handleTimerExpire = () => {
+    alert("Time has ended!");
+  }
 
   render() {
     const {
@@ -124,6 +148,7 @@ class App extends Component {
               currentScore={currentScore}
               nextScore={nextScore}
               setCurrentScore={this.setCurrentScore}
+              handleTimerExpire={this.handleTimerExpire}
             />
             <span className="author">Made by Vineet Koppalkar</span>
             <div className="life-lines-container">
@@ -135,7 +160,7 @@ class App extends Component {
             mobileOpen={mobileOpen}
             handleDrawerToggle={this.handleDrawerToggle}
             curScoreIndex={curQuestionIndex}
-            setNextScore={this.setNextScore}
+            scoreAmounts={formattedScoreAmounts}
           />
         </div>
       </MuiThemeProvider>

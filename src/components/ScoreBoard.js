@@ -5,53 +5,22 @@ import Drawer from "@material-ui/core/Drawer";
 import Hidden from "@material-ui/core/Hidden";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
 import Button from "@material-ui/core/Button";
 
 import LifeLines from "./LifeLines";
 
 import "./ScoreBoard.scss";
 
-const scoreAmounts = [
-  100,
-  200,
-  300,
-  500,
-  1000, // 4
-  2000,
-  4000,
-  8000,
-  16000,
-  32000,
-  64000, // 10
-  125000,
-  250000,
-  500000,
-  1000000 // 14
-];
-
-const reversedScoreAmounts = scoreAmounts.reverse();
-
-const formatter = new Intl.NumberFormat("en-US", {
-  style: "currency",
-  currency: "USD",
-  minimumFractionDigits: 0
-});
-
 class ScoreBoard extends Component {
-  componentDidMount() {
-    const { curScoreIndex, setNextScore } = this.props;
-    const score = formatter.format(scoreAmounts[14 - curScoreIndex]);
-    setNextScore(score);
-  }
-
   render() {
     const {
       container,
       mobileOpen,
       handleDrawerToggle,
-      curScoreIndex
+      curScoreIndex,
+      scoreAmounts
     } = this.props;
+
     return (
       <nav className="drawer" aria-label="mailbox folders">
         <Hidden mdUp implementation="css">
@@ -71,8 +40,8 @@ class ScoreBoard extends Component {
               </div>
               <Divider />
               <List>
-                {reversedScoreAmounts.map((scoreAmount, index) => {
-                  const questionNumber = reversedScoreAmounts.length - index;
+                {scoreAmounts.map((scoreAmount, index) => {
+                  const questionNumber = scoreAmounts.length - index;
                   if (questionNumber - 1 === curScoreIndex) {
                     return (
                       <ListItem key={scoreAmount}>
@@ -81,9 +50,7 @@ class ScoreBoard extends Component {
                           className="score-amount"
                           color="inherit"
                         >
-                          {`${questionNumber}) ${formatter.format(
-                            scoreAmount
-                          )}`}
+                          {`${questionNumber}) ${scoreAmount}`}
                         </Button>
                       </ListItem>
                     );
@@ -91,9 +58,7 @@ class ScoreBoard extends Component {
                     return (
                       <ListItem key={scoreAmount}>
                         <Button variant="outlined" className="score-amount">
-                          {`${questionNumber}) ${formatter.format(
-                            scoreAmount
-                          )}`}
+                          {`${questionNumber}) ${scoreAmount}`}
                         </Button>
                       </ListItem>
                     );
@@ -105,9 +70,7 @@ class ScoreBoard extends Component {
                           className="score-amount"
                           disabled
                         >
-                          {`${questionNumber}) ${formatter.format(
-                            scoreAmount
-                          )}`}
+                          {`${questionNumber}) ${scoreAmount}`}
                         </Button>
                       </ListItem>
                     );
@@ -125,8 +88,8 @@ class ScoreBoard extends Component {
               </div>
               <Divider />
               <List>
-                {reversedScoreAmounts.map((scoreAmount, index) => {
-                  const questionNumber = reversedScoreAmounts.length - index;
+                {scoreAmounts.map((scoreAmount, index) => {
+                  const questionNumber = scoreAmounts.length - index;
                   if (questionNumber - 1 === curScoreIndex) {
                     return (
                       <ListItem key={scoreAmount}>
@@ -135,9 +98,7 @@ class ScoreBoard extends Component {
                           className="score-amount"
                           color="inherit"
                         >
-                          {`${questionNumber}) ${formatter.format(
-                            scoreAmount
-                          )}`}
+                          {`${questionNumber}) ${scoreAmount}`}
                         </Button>
                       </ListItem>
                     );
@@ -145,9 +106,7 @@ class ScoreBoard extends Component {
                     return (
                       <ListItem key={scoreAmount}>
                         <Button variant="outlined" className="score-amount">
-                          {`${questionNumber}) ${formatter.format(
-                            scoreAmount
-                          )}`}
+                          {`${questionNumber}) ${scoreAmount}`}
                         </Button>
                       </ListItem>
                     );
@@ -159,9 +118,7 @@ class ScoreBoard extends Component {
                           className="score-amount"
                           disabled
                         >
-                          {`${questionNumber}) ${formatter.format(
-                            scoreAmount
-                          )}`}
+                          {`${questionNumber}) ${scoreAmount}`}
                         </Button>
                       </ListItem>
                     );
