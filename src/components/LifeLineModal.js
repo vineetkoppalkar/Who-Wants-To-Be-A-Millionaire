@@ -8,8 +8,6 @@ import Button from '@material-ui/core/Button';
 
 import AudiencePoll from './AudiencePoll';
 
-import './WinModal.scss';
-
 class LifeLineModal extends Component {
   getContent = () => {
     const { title, options, correctAnswerIndex } = this.props;

@@ -10,7 +10,7 @@ class AudiencePoll extends Component {
     super(props);
     this.state = {
       valueOfA: 0,
-      valueOfB: 100,
+      valueOfB: 0,
       valueOfC: 0,
       valueOfD: 0
     }
@@ -71,66 +71,37 @@ class AudiencePoll extends Component {
   render() {
     const { valueOfA, valueOfB, valueOfC, valueOfD } = this.state;
     return (
-      <Grid container>
-
-        <Grid item xs={1}>
-          <p className="audience-option">A:</p>
-        </Grid>
-        <Grid item xs={10}>
-          <LinearProgress
-            className="audience-option-bar"
-            // style={{transform: "translateX(50px) rotate(-90deg) translateX(-50px)"}}
-            variant="determinate" 
-            value={valueOfA}
-          />
-        </Grid>
-        <Grid item xs={1}>
+      <Grid container className="audience-poll">
+        <Grid item xs={3}>
           <p className="audience-option-value">{`${valueOfA}%`}</p>
+          <div className="audience-option-bar-container">
+            <div style={{height: `${100 - valueOfA}%`, background: "#424242"}}></div>
+          </div>
+          <p className="audience-option">A</p>
         </Grid>
 
-        <Grid item xs={1}>
-          <p className="audience-option">B:</p>
-        </Grid>
-        <Grid item xs={10}>
-          <LinearProgress
-            className="audience-option-bar"
-            // style={{transform: "translateX(100px) rotate(-90deg) translateX(-100px)"}}
-            variant="determinate" 
-            value={valueOfB}
-          />
-        </Grid>
-        <Grid item xs={1}>
+        <Grid item xs={3}>
           <p className="audience-option-value">{`${valueOfB}%`}</p>
+          <div className="audience-option-bar-container">
+            <div style={{height: `${100 - valueOfB}%`, background: "#424242"}}></div>
+          </div>
+          <p className="audience-option">B</p>
         </Grid>
 
-        <Grid item xs={1}>
-          <p className="audience-option">C:</p>
-        </Grid>
-        <Grid item xs={10}>
-          <LinearProgress
-            className="audience-option-bar"
-            // style={{transform: "translateX(150px) rotate(-90deg) translateX(-150px)"}}
-            variant="determinate" 
-            value={valueOfC}
-          />
-        </Grid>
-        <Grid item xs={1}>
+        <Grid item xs={3}>
           <p className="audience-option-value">{`${valueOfC}%`}</p>
+          <div className="audience-option-bar-container">
+            <div style={{height: `${100 - valueOfC}%`, background: "#424242"}}></div>
+          </div>
+          <p className="audience-option">C</p>
         </Grid>
 
-        <Grid item xs={1}>
-          <p className="audience-option">D:</p>
-        </Grid>
-        <Grid item xs={10}>
-          <LinearProgress
-            className="audience-option-bar"
-            // style={{transform: "translateX(200px) rotate(-90deg) translateX(-200px)"}}
-            variant="determinate" 
-            value={valueOfD}
-          />
-        </Grid>
-        <Grid item xs={1}>
+        <Grid item xs={3}>
           <p className="audience-option-value">{`${valueOfD}%`}</p>
+          <div className="audience-option-bar-container">
+            <div style={{height: `${100 - valueOfD}%`, background: "#424242"}}></div>
+          </div>
+          <p className="audience-option">D</p>
         </Grid>
       </Grid>
     );
