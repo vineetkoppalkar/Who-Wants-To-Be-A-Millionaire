@@ -143,8 +143,8 @@ class QuestionBoard extends Component {
                     }}
                   >
                     {shuffledOptions[0] === question.correct_answer
-                      ? decodeURIComponent(shuffledOptions[0]) + " [*]"
-                      : decodeURIComponent(shuffledOptions[0])}
+                      ? "A: " + decodeURIComponent(shuffledOptions[0]) + " [*]"
+                      : "A: " + decodeURIComponent(shuffledOptions[0])}
                   </Button>
                 </Grid>
                 <Grid item xs={6}>
@@ -159,8 +159,8 @@ class QuestionBoard extends Component {
                     }}
                   >
                     {shuffledOptions[1] === question.correct_answer
-                      ? decodeURIComponent(shuffledOptions[1]) + " [*]"
-                      : decodeURIComponent(shuffledOptions[1])}
+                      ? "B: " + decodeURIComponent(shuffledOptions[1]) + " [*]"
+                      : "B: " + decodeURIComponent(shuffledOptions[1])}
                   </Button>
                 </Grid>
               </Grid>
@@ -177,8 +177,8 @@ class QuestionBoard extends Component {
                     }}
                   >
                     {shuffledOptions[2] === question.correct_answer
-                      ? decodeURIComponent(shuffledOptions[2]) + " [*]"
-                      : decodeURIComponent(shuffledOptions[2])}
+                      ? "C: " + decodeURIComponent(shuffledOptions[2]) + " [*]"
+                      : "C: " + decodeURIComponent(shuffledOptions[2])}
                   </Button>
                 </Grid>
                 <Grid item xs={6}>
@@ -193,8 +193,8 @@ class QuestionBoard extends Component {
                     }}
                   >
                     {shuffledOptions[3] === question.correct_answer
-                      ? decodeURIComponent(shuffledOptions[3]) + " [*]"
-                      : decodeURIComponent(shuffledOptions[3])}
+                      ? "D: " + decodeURIComponent(shuffledOptions[3]) + " [*]"
+                      : "D: " + decodeURIComponent(shuffledOptions[3])}
                   </Button>
                 </Grid>
               </Grid>

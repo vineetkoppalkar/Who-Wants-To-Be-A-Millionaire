@@ -10,10 +10,22 @@ import "./LifeLines.scss";
 
 class LifeLines extends Component {
   render() {
+    const {
+      hasAudiencePoll,
+      handleAudiencePoll,
+      hasPhoneAFriend,
+      handlePhoneAFriend,
+      hasFiftyFifty,
+      handleFiftyFifty
+    } = this.props;
     return (
       <Grid container>
         <Grid item xs={4} className="life-line-container">
-          <Button className="hovicon effect-1 sub-a">
+          <Button
+            className="hovicon effect-1 sub-a"
+            onClick={() => handleAudiencePoll()}
+            disabled={!hasAudiencePoll}
+          >
             <Paper className="life-line">
               <People />
             </Paper>
@@ -21,15 +33,23 @@ class LifeLines extends Component {
           <p className="life-line-description">Audience Poll</p>
         </Grid>
         <Grid item xs={4} className="life-line-container">
-          <Button className="hovicon effect-1 sub-a">
+          <Button
+            className="hovicon effect-1 sub-a"
+            onClick={() => handlePhoneAFriend()}
+            disabled={!hasPhoneAFriend}
+          >
             <Paper className="life-line">
               <Call />
             </Paper>
           </Button>
-          <p className="life-line-description">Phone a friend</p>
+          <p className="life-line-description">Phone a Friend</p>
         </Grid>
         <Grid item xs={4} className="life-line-container">
-          <Button className="hovicon effect-1 sub-a">
+          <Button
+            className="hovicon effect-1 sub-a"
+            onClick={() => handleFiftyFifty()}
+            disabled={!hasFiftyFifty}
+          >
             <Paper className="life-line">
               <h4 style={{ margin: 0 }}>50/50</h4>
             </Paper>

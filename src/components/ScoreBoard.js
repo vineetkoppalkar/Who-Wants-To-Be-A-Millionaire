@@ -18,7 +18,13 @@ class ScoreBoard extends Component {
       mobileOpen,
       handleDrawerToggle,
       curScoreIndex,
-      scoreAmounts
+      scoreAmounts,
+      hasAudiencePoll,
+      handleAudiencePoll,
+      hasPhoneAFriend,
+      handlePhoneAFriend,
+      hasFiftyFifty,
+      handleFiftyFifty
     } = this.props;
 
     return (
@@ -36,7 +42,11 @@ class ScoreBoard extends Component {
           >
             <div className="drawer-content">
               <div className="life-lines-wrapper">
-                <LifeLines />
+                <LifeLines 
+                  handleAudiencePoll={this.handleAudiencePoll}
+                  handlePhoneAFriend={this.handlePhoneAFriend}
+                  handleFiftyFifty={this.handleFiftyFifty}
+                />
               </div>
               <Divider />
               <List>
@@ -84,7 +94,14 @@ class ScoreBoard extends Component {
           <Drawer variant="permanent" anchor="right" open>
             <div className="drawer-content">
               <div className="life-lines-wrapper">
-                <LifeLines />
+                <LifeLines 
+                  hasAudiencePoll={hasAudiencePoll}
+                  handleAudiencePoll={this.handleAudiencePoll}
+                  hasPhoneAFriend={hasPhoneAFriend}
+                  handlePhoneAFriend={this.handlePhoneAFriend}
+                  hasFiftyFifty={hasFiftyFifty}
+                  handleFiftyFifty={this.handleFiftyFifty}
+                />
               </div>
               <Divider />
               <List>

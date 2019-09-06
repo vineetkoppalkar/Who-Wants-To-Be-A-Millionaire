@@ -8,6 +8,7 @@ import CustomAppBar from "./components/CustomAppBar";
 import QuestionBoard from "./components/QuestionBoard";
 import ScoreBoard from "./components/ScoreBoard";
 import LifeLines from "./components/LifeLines";
+import LifeLineModal from "./components/LifeLineModal";
 import WinModal from "./components/WinModal";
 
 import "./App.scss";
@@ -69,7 +70,12 @@ class App extends Component {
       currentScore: formatter.format(0),
       nextScore: formattedScoreAmounts[formattedScoreAmounts.length - 1],
       hasGameEnded: false,
-      modalTitle: "Game Over"
+      modalTitle: "Game Over",
+      hasAudiencePoll: true,
+      hasPhoneAFriend: true,
+      hasFiftyFifty: true,
+      hasSelectedLifeLine: false,
+      selectedLifeLine: ""
     };
   }
 
@@ -112,7 +118,12 @@ class App extends Component {
           currentScore: formatter.format(0),
           nextScore: formattedScoreAmounts[formattedScoreAmounts.length - 1],
           hasGameEnded: false,
-          modalTitle: "Game Over"
+          modalTitle: "Game Over",
+          hasAudiencePoll: true,
+          hasPhoneAFriend: true,
+          hasFiftyFifty: true,
+          hasSelectedLifeLine: false,
+          selectedLifeLine: ""
         });
       })
       .catch(e => console.log(e));
@@ -175,6 +186,61 @@ class App extends Component {
     this.setState({ mobileOpen: !mobileOpen });
   };
 
+  handleAudiencePoll = () => {
+    this.setState({
+      hasSelectedLifeLine: true,
+      selectedLifeLine: "Audience Poll"
+    });
+  }
+
+  handlePhoneAFriend = () => {
+    this.setState({
+      hasSelectedLifeLine: true,
+      selectedLifeLine: "Phone a Friend"
+    });
+  }
+
+  handleFiftyFifty = () => {
+    this.setState({
+      hasSelectedLifeLine: true,
+      selectedLifeLine: "Fifty-Fifty"
+    });
+  }
+
+  onLifeLineModalClose = () => {
+    const { selectedLifeLine } = this.state;
+
+    switch (selectedLifeLine) {
+      case "Audience Poll":
+        this.setState({
+          hasAudiencePoll: false,
+          hasSelectedLifeLine: false,
+          selectedLifeLine: ""
+        });
+        return;
+      case "Phone a Friend":
+        this.setState({
+          hasPhoneAFriend: false,
+          hasSelectedLifeLine: false,
+          selectedLifeLine: ""
+        });
+        return;
+      case "Fifty-Fifty":
+        this.setState({
+          hasFiftyFifty: false,
+          hasSelectedLifeLine: false,
+          selectedLifeLine: ""
+        });
+        return;
+      default:
+        this.setState({
+          hasSelectedLifeLine: false,
+          selectedLifeLine: ""
+        });
+        return;
+    }
+  }
+
   handleTimerExpire = async () => {
     this.questionBoard.handleCorrectSelectedOptionStyle();
     await delay(2000);
@@ -200,14 +266,19 @@ class App extends Component {
       currentScore,
       nextScore,
       hasGameEnded,
-      modalTitle
+      modalTitle,
+      hasAudiencePoll,
+      hasPhoneAFriend,
+      hasFiftyFifty,
+      hasSelectedLifeLine,
+      selectedLifeLine
     } = this.state;
     return (
       <MuiThemeProvider theme={theme}>
         <div className="root">
           <CssBaseline />
           <CustomAppBar
-            title="Who Wants to Be a Millionaire"
+            title="Who Wants to Be a Millionaire - Video Game Edition"
             handleDrawerToggle={this.handleDrawerToggle}
           />
           <main className="content">
@@ -224,7 +295,14 @@ class App extends Component {
             />
             <span className="author">Made by Vineet Koppalkar</span>
             <div className="life-lines-container">
-              <LifeLines />
+              <LifeLines 
+                hasAudiencePoll={hasAudiencePoll}
+                handleAudiencePoll={this.handleAudiencePoll}
+                hasPhoneAFriend={hasPhoneAFriend}
+                handlePhoneAFriend={this.handlePhoneAFriend}
+                hasFiftyFifty={hasFiftyFifty}
+                handleFiftyFifty={this.handleFiftyFifty}
+              />
             </div>
           </main>
           <ScoreBoard
@@ -233,7 +311,21 @@ class App extends Component {
             handleDrawerToggle={this.handleDrawerToggle}
             curScoreIndex={curQuestionIndex}
             scoreAmounts={formattedScoreAmounts}
-          />
+            hasAudiencePoll={hasAudiencePoll}
+            handleAudiencePoll={this.handleAudiencePoll}
+            hasPhoneAFriend={hasPhoneAFriend}
+            handlePhoneAFriend={this.handlePhoneAFriend}
+            hasFiftyFifty={hasFiftyFifty}
+            handleFiftyFifty={this.handleFiftyFifty}
+            />
+
+          {hasSelectedLifeLine ? (
+            <LifeLineModal
+              title={selectedLifeLine}
+              open={hasSelectedLifeLine}
+              onClose={this.onLifeLineModalClose}
+            />
+          ) : null}
 
           {hasGameEnded ? (
             <WinModal

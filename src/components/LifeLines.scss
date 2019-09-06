@@ -19,6 +19,15 @@
   }
 }
 
+.hovicon:disabled,
+.hovicon[disabled] {
+  .life-line {
+    background-color: #202020;
+    opacity: .5;
+  }
+
+}
+
 .hovicon {
   display: inline-block;
   font-size: 45px;
