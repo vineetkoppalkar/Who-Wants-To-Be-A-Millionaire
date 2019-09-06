@@ -139,7 +139,7 @@ class App extends Component {
     const curQuestion = questionsData[curQuestionIndex];
     await delay(100);
     this.questionBoard.handleButtonSelect();
-    this.questionBoard.pauseTimer();
+    this.questionBoard.playPauseTimer();
 
     await delay(2000);
     this.questionBoard.handleCorrectSelectedOptionStyle();
@@ -187,6 +187,7 @@ class App extends Component {
   };
 
   handleAudiencePoll = () => {
+    this.questionBoard.playPauseTimer();
     this.setState({
       hasSelectedLifeLine: true,
       selectedLifeLine: "Audience Poll"
@@ -209,6 +210,7 @@ class App extends Component {
 
   onLifeLineModalClose = () => {
     const { selectedLifeLine } = this.state;
+    this.questionBoard.playPauseTimer();
 
     switch (selectedLifeLine) {
       case "Audience Poll":
@@ -324,6 +326,8 @@ class App extends Component {
               title={selectedLifeLine}
               open={hasSelectedLifeLine}
               onClose={this.onLifeLineModalClose}
+              options={shuffledOptions}
+              correctAnswerIndex={correctAnswerIndex}
             />
           ) : null}
 

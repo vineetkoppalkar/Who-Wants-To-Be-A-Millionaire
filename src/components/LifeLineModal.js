@@ -6,12 +6,18 @@ import Fade from '@material-ui/core/Fade';
 import Paper from "@material-ui/core/Paper";
 import Button from '@material-ui/core/Button';
 
+import AudiencePoll from './AudiencePoll';
+
 import './WinModal.scss';
 
 class LifeLineModal extends Component {
-  getContent = (lifeLine) => {
-    switch (lifeLine) {
-
+  getContent = () => {
+    const { title, options, correctAnswerIndex } = this.props;
+    switch (title) {
+      case "Audience Poll":
+        return <AudiencePoll options={options} correctAnswerIndex={correctAnswerIndex} />
+      default:
+        return null;
     }
   }
 
@@ -32,7 +38,7 @@ class LifeLineModal extends Component {
         <Fade in={open}>
           <Paper className="modal-content">
             <h2 className="modal-title">{title}</h2>
-            {this.getContent(title)}
+            {this.getContent()}
             <Button variant="contained" className="modal-btn" onClick={() => onClose()}>
               Close
             </Button>

@@ -109,8 +109,8 @@ class QuestionBoard extends Component {
     this.timer.reset();
   }
 
-  pauseTimer = () => {
-    this.timer.pause();
+  playPauseTimer = () => {
+    this.timer.playPause();
   }
 
   render() {

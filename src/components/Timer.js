@@ -48,8 +48,9 @@ class Timer extends Component {
     });
   };
 
-  pause = () => {
-    this.setState({ pause: true });
+  playPause = () => {
+    const { pause } = this.state;
+    this.setState({ pause: !pause });
   }
 
   render() {
