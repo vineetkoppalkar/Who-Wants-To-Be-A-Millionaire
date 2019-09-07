@@ -4,13 +4,14 @@ import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import Paper from "@material-ui/core/Paper";
+import Grid from "@material-ui/core/Grid";
 import Button from '@material-ui/core/Button';
 
 import './WinModal.scss';
 
 class WinModal extends Component {
   render() {
-    const { title, open, resetGame, score, correctAnswer } = this.props;
+    const { title, open, backToMenu, resetGame, score, correctAnswer } = this.props;
     return (
       <Modal
         aria-labelledby="transition-modal-title"
@@ -37,9 +38,19 @@ class WinModal extends Component {
             )}
             <p className="modal-score-title">Your score:</p>
             <h1 className="modal-score">{score}</h1>
-            <Button variant="contained" className="modal-btn" onClick={() => resetGame()}>
-              Play Again
-            </Button>
+
+            <Grid container className="modal-options-container">
+              <Grid item xs={6}>
+                <Button variant="contained" className="modal-btn" onClick={() => backToMenu()}>
+                  Back to Menu
+                </Button>
+              </Grid>
+              <Grid item xs={6}>
+                <Button variant="contained" className="modal-btn" onClick={() => resetGame()}>
+                  Play Again
+                </Button>
+              </Grid>
+            </Grid>
           </Paper>
         </Fade>
       </Modal>

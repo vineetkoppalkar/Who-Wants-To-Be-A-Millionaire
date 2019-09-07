@@ -12,26 +12,7 @@ import LifeLines from "./LifeLines";
 import "./ScoreBoard.scss";
 
 class ScoreBoard extends Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      testFuc: this.print
-    }
-  }
-
-  // componentWillMount() {
-  //   console.log("ScoreBoard componentDidMount()");
-  //   this.setState({testFuc: this.print})
-  //   // this.props.handleAudiencePoll();
-  // }
-
-  print = () => {
-    console.log("print")
-  }
-
   render() {
-    const { testFuc } = this.state;
     const {
       container,
       mobileOpen,

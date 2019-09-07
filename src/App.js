@@ -4,6 +4,7 @@ import axios from "axios";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 
+import PlayMenu from "./components/PlayMenu";
 import CustomAppBar from "./components/CustomAppBar";
 import QuestionBoard from "./components/QuestionBoard";
 import ScoreBoard from "./components/ScoreBoard";
@@ -61,6 +62,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      showMenu: true,
       questionsData: [],
       curQuestion: null,
       shuffledOptions: [],
@@ -131,6 +133,14 @@ class App extends Component {
       .catch(e => console.log(e));
   };
 
+  letsPlay = () => {
+    const { showMenu } = this.state;
+    this.setState({
+      hasGameEnded: false,
+      showMenu: !showMenu
+    });
+  }
+
   getCurrentQuestion = () => {
     const { questionsData, curQuestionIndex } = this.state;
     return questionsData[curQuestionIndex];
@@ -143,9 +153,9 @@ class App extends Component {
     this.questionBoard.handleButtonSelect();
     this.questionBoard.playPauseTimer();
 
-    await delay(2000);
+    await delay(1500);
     this.questionBoard.handleCorrectSelectedOptionStyle();
-    await delay(2000);
+    await delay(1500);
 
     if (curQuestion.correct_answer === option) {
       if (curQuestionIndex !== questionsData.length - 1) {
@@ -293,6 +303,7 @@ class App extends Component {
 
   render() {
     const {
+      showMenu,
       curQuestion,
       shuffledOptions,
       correctAnswerIndex,
@@ -318,30 +329,39 @@ class App extends Component {
             handleDrawerToggle={this.handleDrawerToggle}
           />
           <main className="content">
-            <QuestionBoard
-              onRef={ref => (this.questionBoard = ref)}
-              question={curQuestion}
-              shuffledOptions={shuffledOptions}
-              correctAnswerIndex={correctAnswerIndex}
-              twoWrongIndices={twoWrongIndices}
-              onOptionSelect={this.verifyAnswer}
-              currentScore={currentScore}
-              nextScore={nextScore}
-              setCurrentScore={this.setCurrentScore}
-              handleTimerExpire={this.handleTimerExpire}
-            />
-            <span className="author">Made by Vineet Koppalkar</span>
-            <div className="life-lines-container">
-              <LifeLines
-                enableLifeLines={curQuestion != null}
-                hasAudiencePoll={hasAudiencePoll}
-                audiencePollHandler={this.handleAudiencePoll}
-                hasPhoneAFriend={hasPhoneAFriend}
-                phoneAFriendHandler={this.handlePhoneAFriend}
-                hasFiftyFifty={hasFiftyFifty}
-                fiftyFiftyHandler={this.handleFiftyFifty}
-              />
-            </div>
+            {showMenu ? (
+              <div>
+                <PlayMenu letsPlay={this.letsPlay} />
+                <span className="author">Made by Vineet Koppalkar</span>
+              </div>
+            ) : (
+              <div>
+                <QuestionBoard
+                  onRef={ref => (this.questionBoard = ref)}
+                  question={curQuestion}
+                  shuffledOptions={shuffledOptions}
+                  correctAnswerIndex={correctAnswerIndex}
+                  twoWrongIndices={twoWrongIndices}
+                  onOptionSelect={this.verifyAnswer}
+                  currentScore={currentScore}
+                  nextScore={nextScore}
+                  setCurrentScore={this.setCurrentScore}
+                  handleTimerExpire={this.handleTimerExpire}
+                />
+                <span className="author">Made by Vineet Koppalkar</span>
+                <div className="life-lines-container">
+                  <LifeLines
+                    enableLifeLines={curQuestion != null}
+                    hasAudiencePoll={hasAudiencePoll}
+                    audiencePollHandler={this.handleAudiencePoll}
+                    hasPhoneAFriend={hasPhoneAFriend}
+                    phoneAFriendHandler={this.handlePhoneAFriend}
+                    hasFiftyFifty={hasFiftyFifty}
+                    fiftyFiftyHandler={this.handleFiftyFifty}
+                  />
+                </div>
+              </div>
+            )}
           </main>
           <ScoreBoard
             container={this.props.container}
@@ -349,7 +369,7 @@ class App extends Component {
             handleDrawerToggle={this.handleDrawerToggle}
             curScoreIndex={curQuestionIndex}
             scoreAmounts={formattedScoreAmounts}
-            enableLifeLines={curQuestion != null}
+            enableLifeLines={showMenu ? false : curQuestion == null  ? false : true}
             hasAudiencePoll={hasAudiencePoll}
             handleAudiencePoll={this.handleAudiencePoll}
             hasPhoneAFriend={hasPhoneAFriend}
@@ -372,6 +392,7 @@ class App extends Component {
             <WinModal
               title={modalTitle}
               open={hasGameEnded}
+              backToMenu={this.letsPlay}
               resetGame={this.resetGame}
               score={currentScore}
               correctAnswer={shuffledOptions[correctAnswerIndex]}
