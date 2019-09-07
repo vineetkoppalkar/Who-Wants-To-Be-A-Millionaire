@@ -143,9 +143,7 @@ class QuestionBoard extends Component {
                       }
                     }}
                   >
-                    {shuffledOptions[0] === question.correct_answer
-                      ? "A: " + decodeURIComponent(shuffledOptions[0]) + " [*]"
-                      : "A: " + decodeURIComponent(shuffledOptions[0])}
+                    {"A: " + decodeURIComponent(shuffledOptions[0])}
                   </Button>
                 </Grid>
                 <Grid item xs={6}>
@@ -160,9 +158,7 @@ class QuestionBoard extends Component {
                       }
                     }}
                   >
-                    {shuffledOptions[1] === question.correct_answer
-                      ? "B: " + decodeURIComponent(shuffledOptions[1]) + " [*]"
-                      : "B: " + decodeURIComponent(shuffledOptions[1])}
+                    {"B: " + decodeURIComponent(shuffledOptions[1])}
                   </Button>
                 </Grid>
               </Grid>
@@ -179,9 +175,7 @@ class QuestionBoard extends Component {
                       }
                     }}
                   >
-                    {shuffledOptions[2] === question.correct_answer
-                      ? "C: " + decodeURIComponent(shuffledOptions[2]) + " [*]"
-                      : "C: " + decodeURIComponent(shuffledOptions[2])}
+                    {"C: " + decodeURIComponent(shuffledOptions[2])}
                   </Button>
                 </Grid>
                 <Grid item xs={6}>
@@ -196,9 +190,7 @@ class QuestionBoard extends Component {
                       }
                     }}
                   >
-                    {shuffledOptions[3] === question.correct_answer
-                      ? "D: " + decodeURIComponent(shuffledOptions[3]) + " [*]"
-                      : "D: " + decodeURIComponent(shuffledOptions[3])}
+                    {"D: " + decodeURIComponent(shuffledOptions[3])}
                   </Button>
                 </Grid>
               </Grid>
