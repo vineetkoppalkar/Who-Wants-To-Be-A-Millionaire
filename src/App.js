@@ -67,7 +67,7 @@ class App extends Component {
       correctAnswerIndex: null,
       curQuestionIndex: 0,
       mobileOpen: false,
-      currentScore: formatter.format(0),
+      currentScore: "$0",
       nextScore: formattedScoreAmounts[formattedScoreAmounts.length - 1],
       hasGameEnded: false,
       modalTitle: "Game Over",
@@ -77,6 +77,9 @@ class App extends Component {
       hasSelectedLifeLine: false,
       selectedLifeLine: ""
     };
+    // this.handleAudiencePoll = this.handleAudiencePoll.bind(this);
+    // this.handlePhoneAFriend = this.handlePhoneAFriend.bind(this);
+    // this.handleFiftyFifty = this.handleFiftyFifty.bind(this);
   }
 
   componentDidMount() {
@@ -187,6 +190,7 @@ class App extends Component {
   };
 
   handleAudiencePoll = () => {
+    console.log("Clicked audience poll")
     this.questionBoard.playPauseTimer();
     this.setState({
       hasSelectedLifeLine: true,
@@ -195,6 +199,7 @@ class App extends Component {
   }
 
   handlePhoneAFriend = () => {
+    this.questionBoard.playPauseTimer();
     this.setState({
       hasSelectedLifeLine: true,
       selectedLifeLine: "Phone a Friend"
@@ -202,6 +207,7 @@ class App extends Component {
   }
 
   handleFiftyFifty = () => {
+    this.questionBoard.playPauseTimer();
     this.setState({
       hasSelectedLifeLine: true,
       selectedLifeLine: "Fifty-Fifty"
@@ -299,11 +305,11 @@ class App extends Component {
             <div className="life-lines-container">
               <LifeLines 
                 hasAudiencePoll={hasAudiencePoll}
-                handleAudiencePoll={this.handleAudiencePoll}
+                audiencePollHandler={this.handleAudiencePoll}
                 hasPhoneAFriend={hasPhoneAFriend}
-                handlePhoneAFriend={this.handlePhoneAFriend}
+                phoneAFriendHandler={this.handlePhoneAFriend}
                 hasFiftyFifty={hasFiftyFifty}
-                handleFiftyFifty={this.handleFiftyFifty}
+                fiftyFiftyHandler={this.handleFiftyFifty}
               />
             </div>
           </main>
@@ -319,7 +325,7 @@ class App extends Component {
             handlePhoneAFriend={this.handlePhoneAFriend}
             hasFiftyFifty={hasFiftyFifty}
             handleFiftyFifty={this.handleFiftyFifty}
-            />
+          />
 
           {hasSelectedLifeLine ? (
             <LifeLineModal

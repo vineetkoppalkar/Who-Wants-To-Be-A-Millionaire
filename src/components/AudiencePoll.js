@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 import Grid from '@material-ui/core/Grid';
-import LinearProgress from '@material-ui/core/LinearProgress';
 
 import "./AudiencePoll.scss";
 
@@ -17,7 +16,7 @@ class AudiencePoll extends Component {
   }
 
   componentDidMount() {
-    const { options, correctAnswerIndex } = this.props;
+    const { correctAnswerIndex } = this.props;
 
     const correctAnswerValue = this.getRandomInt(50, 85);
     const wrongOptionOneValue = this.getRandomInt(0, 100 - correctAnswerValue);

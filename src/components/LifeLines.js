@@ -12,18 +12,18 @@ class LifeLines extends Component {
   render() {
     const {
       hasAudiencePoll,
-      handleAudiencePoll,
+      audiencePollHandler,
       hasPhoneAFriend,
-      handlePhoneAFriend,
+      phoneAFriendHandler,
       hasFiftyFifty,
-      handleFiftyFifty
+      fiftyFiftyHandler
     } = this.props;
     return (
       <Grid container>
         <Grid item xs={4} className="life-line-container">
           <Button
             className="hovicon effect-1 sub-a"
-            onClick={() => handleAudiencePoll()}
+            onClick={audiencePollHandler}
             disabled={!hasAudiencePoll}
           >
             <Paper className="life-line">
@@ -35,7 +35,7 @@ class LifeLines extends Component {
         <Grid item xs={4} className="life-line-container">
           <Button
             className="hovicon effect-1 sub-a"
-            onClick={() => handlePhoneAFriend()}
+            onClick={phoneAFriendHandler}
             disabled={!hasPhoneAFriend}
           >
             <Paper className="life-line">
@@ -47,7 +47,7 @@ class LifeLines extends Component {
         <Grid item xs={4} className="life-line-container">
           <Button
             className="hovicon effect-1 sub-a"
-            onClick={() => handleFiftyFifty()}
+            onClick={fiftyFiftyHandler}
             disabled={!hasFiftyFifty}
           >
             <Paper className="life-line">

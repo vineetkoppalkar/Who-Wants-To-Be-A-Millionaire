@@ -12,7 +12,26 @@ import LifeLines from "./LifeLines";
 import "./ScoreBoard.scss";
 
 class ScoreBoard extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      testFuc: this.print
+    }
+  }
+
+  // componentWillMount() {
+  //   console.log("ScoreBoard componentDidMount()");
+  //   this.setState({testFuc: this.print})
+  //   // this.props.handleAudiencePoll();
+  // }
+
+  print = () => {
+    console.log("print")
+  }
+
   render() {
+    const { testFuc } = this.state;
     const {
       container,
       mobileOpen,
@@ -43,9 +62,12 @@ class ScoreBoard extends Component {
             <div className="drawer-content">
               <div className="life-lines-wrapper">
                 <LifeLines 
-                  handleAudiencePoll={this.handleAudiencePoll}
-                  handlePhoneAFriend={this.handlePhoneAFriend}
-                  handleFiftyFifty={this.handleFiftyFifty}
+                  hasAudiencePoll={hasAudiencePoll}
+                  audiencePollHandler={handleAudiencePoll}
+                  hasPhoneAFriend={hasPhoneAFriend}
+                  phoneAFriendHandler={handlePhoneAFriend}
+                  hasFiftyFifty={hasFiftyFifty}
+                  fiftyFiftyHandler={handleFiftyFifty}
                 />
               </div>
               <Divider />
@@ -96,11 +118,11 @@ class ScoreBoard extends Component {
               <div className="life-lines-wrapper">
                 <LifeLines 
                   hasAudiencePoll={hasAudiencePoll}
-                  handleAudiencePoll={this.handleAudiencePoll}
+                  audiencePollHandler={handleAudiencePoll}
                   hasPhoneAFriend={hasPhoneAFriend}
-                  handlePhoneAFriend={this.handlePhoneAFriend}
+                  phoneAFriendHandler={handlePhoneAFriend}
                   hasFiftyFifty={hasFiftyFifty}
-                  handleFiftyFifty={this.handleFiftyFifty}
+                  fiftyFiftyHandler={handleFiftyFifty}
                 />
               </div>
               <Divider />

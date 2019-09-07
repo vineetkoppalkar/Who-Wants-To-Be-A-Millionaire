@@ -7,6 +7,7 @@ import Paper from "@material-ui/core/Paper";
 import Button from '@material-ui/core/Button';
 
 import AudiencePoll from './AudiencePoll';
+import PhoneAFriend from './PhoneAFriend';
 
 class LifeLineModal extends Component {
   getContent = () => {
@@ -14,6 +15,8 @@ class LifeLineModal extends Component {
     switch (title) {
       case "Audience Poll":
         return <AudiencePoll options={options} correctAnswerIndex={correctAnswerIndex} />
+      case "Phone a Friend":
+        return <PhoneAFriend options={options} correctAnswerIndex={correctAnswerIndex} />
       default:
         return null;
     }
