@@ -134,11 +134,18 @@ class App extends Component {
   };
 
   letsPlay = () => {
-    const { showMenu } = this.state;
     this.setState({
       hasGameEnded: false,
-      showMenu: !showMenu
+      showMenu: false
     });
+  }
+
+  backToMenu = () => {
+    this.setState({
+      hasGameEnded: false,
+      showMenu: true
+    });
+    this.setupGame();
   }
 
   getCurrentQuestion = () => {
@@ -392,7 +399,7 @@ class App extends Component {
             <WinModal
               title={modalTitle}
               open={hasGameEnded}
-              backToMenu={this.letsPlay}
+              backToMenu={this.backToMenu}
               resetGame={this.resetGame}
               score={currentScore}
               correctAnswer={shuffledOptions[correctAnswerIndex]}
