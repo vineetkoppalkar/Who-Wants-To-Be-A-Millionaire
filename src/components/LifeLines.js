@@ -11,6 +11,7 @@ import "./LifeLines.scss";
 class LifeLines extends Component {
   render() {
     const {
+      enableLifeLines,
       hasAudiencePoll,
       audiencePollHandler,
       hasPhoneAFriend,
@@ -24,7 +25,7 @@ class LifeLines extends Component {
           <Button
             className="hovicon effect-1 sub-a"
             onClick={audiencePollHandler}
-            disabled={!hasAudiencePoll}
+            disabled={!hasAudiencePoll || !enableLifeLines}
           >
             <Paper className="life-line">
               <People />
@@ -36,7 +37,7 @@ class LifeLines extends Component {
           <Button
             className="hovicon effect-1 sub-a"
             onClick={phoneAFriendHandler}
-            disabled={!hasPhoneAFriend}
+            disabled={!hasPhoneAFriend || !enableLifeLines}
           >
             <Paper className="life-line">
               <Call />
@@ -48,7 +49,7 @@ class LifeLines extends Component {
           <Button
             className="hovicon effect-1 sub-a"
             onClick={fiftyFiftyHandler}
-            disabled={!hasFiftyFifty}
+            disabled={!hasFiftyFifty || !enableLifeLines}
           >
             <Paper className="life-line">
               <h4 style={{ margin: 0 }}>50/50</h4>

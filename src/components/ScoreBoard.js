@@ -38,6 +38,7 @@ class ScoreBoard extends Component {
       handleDrawerToggle,
       curScoreIndex,
       scoreAmounts,
+      enableLifeLines,
       hasAudiencePoll,
       handleAudiencePoll,
       hasPhoneAFriend,
@@ -61,7 +62,8 @@ class ScoreBoard extends Component {
           >
             <div className="drawer-content">
               <div className="life-lines-wrapper">
-                <LifeLines 
+                <LifeLines
+                  enableLifeLines={enableLifeLines}
                   hasAudiencePoll={hasAudiencePoll}
                   audiencePollHandler={handleAudiencePoll}
                   hasPhoneAFriend={hasPhoneAFriend}
@@ -116,7 +118,8 @@ class ScoreBoard extends Component {
           <Drawer variant="permanent" anchor="right" open>
             <div className="drawer-content">
               <div className="life-lines-wrapper">
-                <LifeLines 
+                <LifeLines
+                  enableLifeLines={enableLifeLines}
                   hasAudiencePoll={hasAudiencePoll}
                   audiencePollHandler={handleAudiencePoll}
                   hasPhoneAFriend={hasPhoneAFriend}

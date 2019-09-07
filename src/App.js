@@ -332,7 +332,8 @@ class App extends Component {
             />
             <span className="author">Made by Vineet Koppalkar</span>
             <div className="life-lines-container">
-              <LifeLines 
+              <LifeLines
+                enableLifeLines={curQuestion != null}
                 hasAudiencePoll={hasAudiencePoll}
                 audiencePollHandler={this.handleAudiencePoll}
                 hasPhoneAFriend={hasPhoneAFriend}
@@ -348,6 +349,7 @@ class App extends Component {
             handleDrawerToggle={this.handleDrawerToggle}
             curScoreIndex={curQuestionIndex}
             scoreAmounts={formattedScoreAmounts}
+            enableLifeLines={curQuestion != null}
             hasAudiencePoll={hasAudiencePoll}
             handleAudiencePoll={this.handleAudiencePoll}
             hasPhoneAFriend={hasPhoneAFriend}
