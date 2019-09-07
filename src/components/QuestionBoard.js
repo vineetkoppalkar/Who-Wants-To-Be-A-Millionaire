@@ -115,7 +115,7 @@ class QuestionBoard extends Component {
 
   render() {
     const { allowSelecting, firstOptionClass, secondOptionClass, thirdOptionClass, fourthOptionClass } = this.state;
-    const { question, onOptionSelect, currentScore, nextScore, handleTimerExpire, shuffledOptions } = this.props;
+    const { question, onOptionSelect, currentScore, nextScore, handleTimerExpire, shuffledOptions, twoWrongIndices } = this.props;
 
     return (
       <div>
@@ -135,6 +135,7 @@ class QuestionBoard extends Component {
                   <Button
                     variant="contained"
                     className={`question-option ${firstOptionClass}`}
+                    style={{display: twoWrongIndices[0] === 0 || twoWrongIndices[1] === 0 ? 'none' : 'block'}}
                     onClick={() => {
                       if (allowSelecting) {
                         this.setSelectedBtnIndex(0);
@@ -151,6 +152,7 @@ class QuestionBoard extends Component {
                   <Button
                     variant="contained"
                     className={`question-option ${secondOptionClass}`}
+                    style={{display: twoWrongIndices[0] === 1 || twoWrongIndices[1] === 1 ? 'none' : 'block'}}
                     onClick={() => {
                       if (allowSelecting) {
                         this.setSelectedBtnIndex(1);
@@ -169,6 +171,7 @@ class QuestionBoard extends Component {
                   <Button
                     variant="contained"
                     className={`question-option ${thirdOptionClass}`}
+                    style={{display: twoWrongIndices[0] === 2 || twoWrongIndices[1] === 2 ? 'none' : 'block'}}
                     onClick={() => {
                       if (allowSelecting) {
                         this.setSelectedBtnIndex(2);
@@ -185,6 +188,7 @@ class QuestionBoard extends Component {
                   <Button
                     variant="contained"
                     className={`question-option ${fourthOptionClass}`}
+                    style={{display: twoWrongIndices[0] === 3 || twoWrongIndices[1] === 3 ? 'none' : 'block'}}
                     onClick={() => {
                       if (allowSelecting) {
                         this.setSelectedBtnIndex(3);

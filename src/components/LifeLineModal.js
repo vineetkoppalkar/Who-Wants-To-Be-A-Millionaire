@@ -17,6 +17,8 @@ class LifeLineModal extends Component {
         return <AudiencePoll options={options} correctAnswerIndex={correctAnswerIndex} />
       case "Phone a Friend":
         return <PhoneAFriend options={options} correctAnswerIndex={correctAnswerIndex} />
+      case "Fifty-Fifty":
+        return <p>Removing two WRONG answers</p>
       default:
         return null;
     }

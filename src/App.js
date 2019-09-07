@@ -74,12 +74,10 @@ class App extends Component {
       hasAudiencePoll: true,
       hasPhoneAFriend: true,
       hasFiftyFifty: true,
+      twoWrongIndices: [-1, -1],
       hasSelectedLifeLine: false,
       selectedLifeLine: ""
     };
-    // this.handleAudiencePoll = this.handleAudiencePoll.bind(this);
-    // this.handlePhoneAFriend = this.handlePhoneAFriend.bind(this);
-    // this.handleFiftyFifty = this.handleFiftyFifty.bind(this);
   }
 
   componentDidMount() {
@@ -125,6 +123,7 @@ class App extends Component {
           hasAudiencePoll: true,
           hasPhoneAFriend: true,
           hasFiftyFifty: true,
+          twoWrongIndices: [-1, -1],
           hasSelectedLifeLine: false,
           selectedLifeLine: ""
         });
@@ -163,7 +162,8 @@ class App extends Component {
           correctAnswerIndex,
           curQuestionIndex: newCurQuestionIndex,
           nextScore: formattedScoreAmounts[formattedScoreAmounts.length - newCurQuestionIndex - 1],
-          currentScore: formattedScoreAmounts[formattedScoreAmounts.length - curQuestionIndex - 1]
+          currentScore: formattedScoreAmounts[formattedScoreAmounts.length - curQuestionIndex - 1],
+          twoWrongIndices: [-1, -1]
         });
 
         this.questionBoard.resetTimer();
@@ -173,7 +173,8 @@ class App extends Component {
           hasGameEnded: true,
           modalTitle: "Congratulations!",
           nextScore: "——",
-          currentScore: formattedScoreAmounts[0]
+          currentScore: formattedScoreAmounts[0],
+          twoWrongIndices: [-1, -1]
         })
       }
     } else {
@@ -210,7 +211,7 @@ class App extends Component {
     this.questionBoard.playPauseTimer();
     this.setState({
       hasSelectedLifeLine: true,
-      selectedLifeLine: "Fifty-Fifty"
+      selectedLifeLine: "Fifty-Fifty",
     });
   }
 
@@ -234,10 +235,12 @@ class App extends Component {
         });
         return;
       case "Fifty-Fifty":
+        this.removeTwoIncorrectOptions();
         this.setState({
           hasFiftyFifty: false,
           hasSelectedLifeLine: false,
           selectedLifeLine: ""
+
         });
         return;
       default:
@@ -247,6 +250,30 @@ class App extends Component {
         });
         return;
     }
+  }
+
+  removeTwoIncorrectOptions = () => {
+    const { correctAnswerIndex } = this.state;
+
+    let wrongAnsIndexOne = null;
+    while (wrongAnsIndexOne === null || wrongAnsIndexOne === correctAnswerIndex) {
+      wrongAnsIndexOne = this.getRandomInt(0, 3);
+    }
+
+    let wrongAnsIndexTwo = null;
+    while (wrongAnsIndexTwo === null || wrongAnsIndexTwo === correctAnswerIndex || wrongAnsIndexTwo === wrongAnsIndexOne) {
+      wrongAnsIndexTwo = this.getRandomInt(0, 3);
+    }
+
+    this.setState({
+      twoWrongIndices: [wrongAnsIndexOne, wrongAnsIndexTwo]
+    });
+  }
+
+  getRandomInt = (min, max) => {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
   handleTimerExpire = async () => {
@@ -278,6 +305,7 @@ class App extends Component {
       hasAudiencePoll,
       hasPhoneAFriend,
       hasFiftyFifty,
+      twoWrongIndices,
       hasSelectedLifeLine,
       selectedLifeLine
     } = this.state;
@@ -295,6 +323,7 @@ class App extends Component {
               question={curQuestion}
               shuffledOptions={shuffledOptions}
               correctAnswerIndex={correctAnswerIndex}
+              twoWrongIndices={twoWrongIndices}
               onOptionSelect={this.verifyAnswer}
               currentScore={currentScore}
               nextScore={nextScore}
