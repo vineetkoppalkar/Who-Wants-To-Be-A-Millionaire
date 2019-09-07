@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "8aa7f7d0844e972e091105eb67d5b86b",
+    "revision": "c000a7ccecbcdb804fd163036440de23",
     "url": "/Who-Wants-To-Be-A-Millionaire/index.html"
   },
   {
