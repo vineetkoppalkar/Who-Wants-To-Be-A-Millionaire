@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/Who-Wants-To-Be-A-Millionaire/precache-manifest.9a89d4b59b3a6c22fad957ceea884f3e.js"
+  "/Who-Wants-To-Be-A-Millionaire/precache-manifest.ca58035dcbc9043787e0ffc80313d40a.js"
 );
 
 self.addEventListener('message', (event) => {
@@ -35,5 +35,5 @@ workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
 workbox.routing.registerNavigationRoute(workbox.precaching.getCacheKeyForURL("/Who-Wants-To-Be-A-Millionaire/index.html"), {
   
-  blacklist: [/^\/_/,/\/[^\/?]+\.[^\/]+$/],
+  blacklist: [/^\/_/,/\/[^/?]+\.[^/]+$/],
 });
