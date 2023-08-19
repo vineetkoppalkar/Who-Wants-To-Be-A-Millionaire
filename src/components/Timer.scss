@@ -15,14 +15,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 
   border-radius: 50%;
   width: 80px;
   height: 80px;
 
   &-value {
-    position: fixed;
-    margin-top: -1px;
+    position: absolute;
   }
 }
 

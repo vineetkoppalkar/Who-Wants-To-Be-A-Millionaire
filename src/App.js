@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 
-import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import { MuiThemeProvider, createTheme } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 
 import PlayMenu from "./components/PlayMenu";
@@ -14,7 +14,7 @@ import WinModal from "./components/WinModal";
 
 import "./App.scss";
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     type: "dark"
   }
@@ -111,7 +111,7 @@ class App extends Component {
           [curQuestion.correct_answer].concat(curQuestion.incorrect_answers)
         );
         const correctAnswerIndex = shuffledOptions.findIndex(option => option === curQuestion.correct_answer);
-        
+
         this.setState({
           questionsData,
           curQuestion,
@@ -172,7 +172,7 @@ class App extends Component {
           [newCurQuestion.correct_answer].concat(newCurQuestion.incorrect_answers)
         );
         const correctAnswerIndex = shuffledOptions.findIndex(option => option === newCurQuestion.correct_answer);
-        
+
         this.setState({
           curQuestion: newCurQuestion,
           shuffledOptions,
